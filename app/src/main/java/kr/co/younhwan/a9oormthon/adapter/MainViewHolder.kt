@@ -1,0 +1,35 @@
+package kr.co.younhwan.a9oormthon.adapter
+
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewParent
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import kr.co.younhwan.a9oormthon.R
+import kr.co.younhwan.a9oormthon.data.item
+import kr.co.younhwan.a9oormthon.databinding.RecyclerItemBinding
+
+class MainViewHolder(
+    private val parent: ViewParent,
+    binding: RecyclerItemBinding,
+) : RecyclerView.ViewHolder(binding.root) {
+
+    private val itemImage by lazy {
+        binding.image
+    }
+
+    private val itemDescription by lazy {
+        binding.description
+    }
+
+    fun onBind(item: item) {
+        itemDescription.text = item.description
+
+        Glide.with(this.itemView.context)
+            .load(item.imageUrl)
+            .error(R.mipmap.ic_launcher)
+            .into(itemImage)
+
+
+    }
+}

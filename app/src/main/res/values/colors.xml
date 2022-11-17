@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- custom -->
+    <color name='gray_1'>#dddddd</color>
+    <color name='gray_2'>#656565</color>
+    <color name='violet'>#7454D0</color>
+    <color name="bg_black">#171717</color>
+
+    <color name='btn_background_color'>#330C0C0C</color>
 </resources>
