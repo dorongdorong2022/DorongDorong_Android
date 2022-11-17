@@ -5,6 +5,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kr.co.younhwan.a9oormthon.data.soundItem
+import kr.co.younhwan.a9oormthon.data.taleItem
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -56,6 +58,100 @@ object MainRemoteDataSource : MainSource {
         runBlocking {
             launch {
                 val site = "$serverInfo/"
+
+            }
+        }
+
+    }
+
+    override fun readSound(token: String, readSoundCallback: MainSource.ReadSoundCallback?) {
+        val list = ArrayList<soundItem>()
+
+        runBlocking {
+            launch {
+                val site = "$serverInfo/jejusound/select/list/10"
+                val request = Request.Builder().url(site).header("token", token).get().build()
+
+                client.newCall(request).enqueue(object : Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            readSoundCallback?.onReadSound(list)
+                        }
+                    }
+
+                    override fun onResponse(call: Call, response: Response) {
+                        if (response.isSuccessful) {
+                            val resultText = response.body?.string()!!.trim()
+                            val json = JSONObject(resultText)
+
+                            val data = JSONArray(json["jejuSoundList"].toString())
+
+                            for (i in 0 until data.length()) {
+                                val obj = data.getJSONObject(i)
+
+                                list.add(
+                                    soundItem(
+                                        obj.getString("jejuSoundImgUrl") ?: "",
+                                        obj.getString("jejuSoundTxt") ?: "",
+                                        obj.getString("jejuSoundNo") ?: "",
+                                        obj.getString("jejuSoundThumbnailImgUrl") ?: "",
+                                        obj.getString("jejuSoundUrl") ?: "",
+                                    )
+                                )
+                            }
+                        }
+
+                        CoroutineScope(Dispatchers.Main).launch {
+                            readSoundCallback?.onReadSound(list)
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    override fun readTale(token: String, readTaleCallback: MainSource.ReadTaleCallback?) {
+        val list = ArrayList<soundItem>()
+
+        runBlocking {
+            launch {
+                val site = "$serverInfo/jejustory/select/list"
+                val request = Request.Builder().url(site).header("token", token).get().build()
+
+                client.newCall(request).enqueue(object : Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            readTaleCallback?.onReadTale(list)
+                        }
+                    }
+
+                    override fun onResponse(call: Call, response: Response) {
+                        if (response.isSuccessful) {
+                            val resultText = response.body?.string()!!.trim()
+                            val json = JSONObject(resultText)
+
+                            val data = JSONArray(json["jejuSoundList"].toString())
+
+                            for (i in 0 until data.length()) {
+                                val obj = data.getJSONObject(i)
+
+                                list.add(
+                                    soundItem(
+                                        jejuSoundImgUrl = obj.getString("jejuStoryVoiceUrl") ?: "",
+                                        jejuSoundThumbnailImgUrl = obj.getString("jejuStoryThubnail_img_url") ?: "",
+                                        jejuSoundMsg = obj.getString("jejuStoryTitle") ?: "",
+                                        jejuSoundNo = obj.getString("jejuStoryNo") ?: "",
+                                        jejuSoundUrl = ""
+                                    )
+                                )
+                            }
+                        }
+
+                        CoroutineScope(Dispatchers.Main).launch {
+                            readTaleCallback?.onReadTale(list)
+                        }
+                    }
+                })
 
             }
         }

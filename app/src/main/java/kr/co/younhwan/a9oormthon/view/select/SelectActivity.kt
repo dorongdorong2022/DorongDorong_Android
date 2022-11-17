@@ -32,7 +32,6 @@ class SelectActivity :
         VoiceAdapter()
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectBinding.inflate(layoutInflater)

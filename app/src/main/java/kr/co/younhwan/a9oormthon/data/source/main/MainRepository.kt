@@ -1,5 +1,6 @@
 package kr.co.younhwan.a9oormthon.data.source.main
 
+import kr.co.younhwan.a9oormthon.data.soundItem
 import kr.co.younhwan.a9oormthon.data.voiceItem
 import java.util.UUID
 
@@ -26,6 +27,21 @@ object MainRepository : MainSource {
                 }
             }
         )
+    }
+
+    override fun readSound(token: String, readSoundCallback: MainSource.ReadSoundCallback?) {
+        maybeRemoteDataSource.readSound(
+            token,
+            object : MainSource.ReadSoundCallback {
+                override fun onReadSound(list: ArrayList<soundItem>) {
+                    readSoundCallback?.onReadSound(list)
+                }
+            }
+        )
+    }
+
+    override fun readTale(token: String, readTaleCallback: MainSource.ReadTaleCallback?) {
+
     }
 
     override fun read(readCallback: MainSource.ReadCallback?) {

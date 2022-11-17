@@ -21,12 +21,12 @@
 
         <CheckBox
             android:id="@+id/checkBox"
+            style="@style/MyCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
     </RelativeLayout>
 
     <RelativeLayout

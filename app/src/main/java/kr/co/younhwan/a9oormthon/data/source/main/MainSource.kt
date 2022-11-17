@@ -1,5 +1,7 @@
 package kr.co.younhwan.a9oormthon.data.source.main
 
+import kr.co.younhwan.a9oormthon.data.soundItem
+import kr.co.younhwan.a9oormthon.data.taleItem
 import kr.co.younhwan.a9oormthon.data.voiceItem
 
 interface MainSource {
@@ -21,6 +23,26 @@ interface MainSource {
 
     interface ReadVoiceCallback {
         fun onReadVoice(list: ArrayList<voiceItem>)
+    }
+
+    // sound
+    fun readSound(
+        token: String,
+        readSoundCallback: ReadSoundCallback?
+    )
+
+    interface ReadSoundCallback {
+        fun onReadSound(list: ArrayList<soundItem>)
+    }
+
+    // tale
+    fun readTale(
+        token: String,
+        readTaleCallback: ReadTaleCallback?
+    )
+
+    interface ReadTaleCallback {
+        fun onReadTale(list: ArrayList<soundItem>)
     }
 
     // read

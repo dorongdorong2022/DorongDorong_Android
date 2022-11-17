@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
+        android:id="@+id/topContaier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -14,9 +17,10 @@
 
         <com.google.android.material.button.MaterialButton
             style="@style/MyButtonStyle"
-            android:id="@+id/changeLocation"
+            android:id="@+id/changeTale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/MyTextView"
             android:text="설화변경" />
 
         <ImageView
@@ -32,19 +36,44 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/topContaier"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="36dp"
+        >
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/standard_bottom_sheet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#B30C0C0C"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
+            <LinearLayout
+                android:id="@+id/closeBtnContainer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="20dp">
+
+                <ImageButton
+                    android:id="@+id/closeBtn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:backgroundTint="#656565"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_32" />
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </FrameLayout>
+                android:layout_height="match_parent"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="68dp"
+                android:layout_marginEnd="24dp"
+                />
+        </RelativeLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </RelativeLayout>

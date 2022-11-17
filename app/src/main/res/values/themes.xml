@@ -38,6 +38,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">@color/violet</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Button.Rounded</item>
+
     </style>
 
     <style name="ShapeAppearanceOverlay.MyApp.Button.Rounded" parent="">
@@ -48,5 +49,21 @@
     <style name="MyToolbarStyle" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="backgroundColor">@color/bg_black</item>
         <item name="android:background">@color/bg_black</item>
+    </style>
+
+    <!-- 텍스트 뷰 시작 -->
+    <style name="MyTextView">
+        <item name="android:fontFamily">@font/pretendard_black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyMenu" parent="Widget.Design.BottomNavigationView">
+        <item name="android:fontFamily">@font/pretendard_black</item>
+    </style>
+
+    <style name="MyCheckbox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/selector_check_box</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 </resources>

@@ -2,6 +2,7 @@ package kr.co.younhwan.a9oormthon.view.main
 
 import android.content.Intent
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,6 @@ import kr.co.younhwan.a9oormthon.view.main.sound.SoundFragment
 import kr.co.younhwan.a9oormthon.util.replace
 import kr.co.younhwan.a9oormthon.view.main.tale.TaleFragment
 import kr.co.younhwan.a9oormthon.view.main.voice.VoiceFragment
-
 
 class MainActivity :
     AppCompatActivity(),
@@ -46,7 +46,7 @@ class MainActivity :
 
     // Audio
     var playing: Boolean = true
-    private lateinit var startSound : MediaPlayer
+    var startSound : MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +54,9 @@ class MainActivity :
         setContentView(binding.root)
 
         // Play audio
-        startSound = MediaPlayer.create(this, R.raw.sound3)
-        startSound.isLooping = true
-        startSound.start()
+        startSound = MediaPlayer.create(this, Uri.parse("https://dorongdorong.s3.ap-northeast-2.amazonaws.com/file/sound/%E1%84%89%E1%85%A2%E1%84%87%E1%85%A7%E1%86%AF%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B3%E1%86%B7.wav"))
+        startSound?.isLooping = true
+        startSound?.start()
 
         binding.fragmentContainerView.setOnClickListener {
             playAudio()
@@ -71,7 +71,7 @@ class MainActivity :
         // Bottom nav
         binding.bottomNavigation.selectedItemId = R.id.option_sound
         binding.bottomNavigation.setOnItemSelectedListener {
-            startSound.stop()
+            startSound?.stop()
 
             when (it.itemId) {
                 R.id.option_sound -> {
@@ -106,9 +106,9 @@ class MainActivity :
 
     override fun playAudio() {
         if (playing){
-            startSound.pause()
+            startSound?.pause()
         } else {
-            startSound.start()
+            startSound?.start()
         }
 
         playing = !playing

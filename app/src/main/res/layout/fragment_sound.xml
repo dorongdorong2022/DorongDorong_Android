@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:layout_marginStart="24dp"
+        android:textAppearance="@style/MyTextView"
         android:text="장소변경" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -34,14 +35,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="20dp">
 
                 <ImageButton
                     android:id="@+id/closeBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_24" />
+                    android:backgroundTint="#656565"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_down_32" />
 
             </LinearLayout>
 

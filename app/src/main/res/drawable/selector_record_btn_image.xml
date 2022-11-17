@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/record_1" android:state_first="true" />
+    <item android:drawable="@drawable/record_2" android:state_middle="false" />
+    <item android:drawable="@drawable/record_3" android:state_last="false" />
+</selector>

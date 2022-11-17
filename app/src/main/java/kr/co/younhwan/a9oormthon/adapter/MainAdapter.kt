@@ -3,9 +3,11 @@ package kr.co.younhwan.a9oormthon.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import kr.co.younhwan.a9oormthon.data.item
 import kr.co.younhwan.a9oormthon.databinding.RecyclerItemBinding
 import kr.co.younhwan.a9oormthon.adapter.contract.MainAdapterContract
+import kr.co.younhwan.a9oormthon.data.soundItem
 
 class MainAdapter :
     RecyclerView.Adapter<MainViewHolder>(),
@@ -13,17 +15,16 @@ class MainAdapter :
     MainAdapterContract.Model {
 
     // 리사이클러뷰 아이템
-    private var itemList: ArrayList<item> = ArrayList()
+    private var itemList: ArrayList<soundItem> = ArrayList()
 
     // 이벤트 리스너
-    // ..
-    // ..
+    override var onClickFunOfLocation: ((String) -> Unit)? = null
 
     override fun getItemCount() = itemList.size
 
     override fun notifyAdapter() = notifyDataSetChanged()
 
-    override fun addItems(items: ArrayList<item>) {
+    override fun addItems(items: ArrayList<soundItem>) {
         itemList = items
     }
 
@@ -32,7 +33,8 @@ class MainAdapter :
         val binding = RecyclerItemBinding.inflate(inflater, parent, false)
         return MainViewHolder(
             parent = parent,
-            binding = binding
+            binding = binding,
+            listenerFuncOfLocation = onClickFunOfLocation
         )
     }
 
