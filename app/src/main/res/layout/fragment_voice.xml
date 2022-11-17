@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_black">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/voiceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="61dp"
+        android:text="보이스 녹음 설명"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/containedButton"
+        style="@style/MyButtonStyle2"
+        android:layout_width="327dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:text="녹음 시작하기" />
+</RelativeLayout>

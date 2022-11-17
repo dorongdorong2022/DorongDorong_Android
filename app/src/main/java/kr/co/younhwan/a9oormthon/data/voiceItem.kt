@@ -4,5 +4,6 @@ data class voiceItem(
     var id: Int?,
     var name: String,
     var selected : Boolean,
-    var audioFile: String
+    var audioFile: String,
+    var type : Int
 )

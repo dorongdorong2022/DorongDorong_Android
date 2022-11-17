@@ -6,34 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".view.select.SelectActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        style="@style/MyToolbarStyle"
+        >
 
-        <com.google.android.material.appbar.AppBarLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/voiceToolbar"
+            style="@style/MyToolbarStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/back"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                style="@style/MyToolbarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/bg_black"
-                app:navigationIcon="@drawable/back" />
+    <LinearLayout
+        android:id="@+id/textContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@color/bg_black"
+        android:orientation="horizontal"
+        android:paddingStart="24dp"
+        android:paddingTop="29dp"
+        android:paddingBottom="40dp">
 
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <!-- Note: A RecyclerView can also be used -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@color/bg_black"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:text="목소리를 선택해주세요"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
 
-            <!-- Scrollable content -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textContainer"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bg_black"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </androidx.recyclerview.widget.RecyclerView>
+        <!-- Scrollable content -->
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

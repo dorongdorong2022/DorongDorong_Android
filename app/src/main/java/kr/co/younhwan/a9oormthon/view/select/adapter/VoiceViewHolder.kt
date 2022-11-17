@@ -1,42 +1,47 @@
 package kr.co.younhwan.a9oormthon.view.select.adapter
 
+import android.animation.Animator
 import android.view.ViewParent
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import kr.co.younhwan.a9oormthon.data.voiceItem
 import kr.co.younhwan.a9oormthon.databinding.RecyclerVoiceItemBinding
 
 class VoiceViewHolder(
     private val parent: ViewParent,
-    binding: RecyclerVoiceItemBinding
+    binding: RecyclerVoiceItemBinding,
+    private val listenerFuncOfBtn: ((LottieAnimationView) -> Unit)?
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun onBind(voiceItem: voiceItem) {
+    private val btn by lazy {
+        binding.playBtn
+    }
 
+    private val equalizer by lazy {
+        binding.volumeEqualizer
+    }
+
+    fun onBind(voiceItem: voiceItem) {
+        btn.setOnClickListener {
+            it.isSelected = true
+            listenerFuncOfBtn?.invoke(equalizer)
+        }
+
+        equalizer.addAnimatorListener(object : Animator.AnimatorListener{
+            override fun onAnimationCancel(p0: Animator?) {
+
+            }
+
+            override fun onAnimationEnd(p0: Animator?) {
+                btn.isSelected = false
+            }
+
+            override fun onAnimationRepeat(p0: Animator?) {
+            }
+
+            override fun onAnimationStart(p0: Animator?) {
+
+            }
+        })
     }
 }
-
-
-//class MainViewHolder(
-//    private val parent: ViewParent,
-//    binding: RecyclerItemBinding,
-//) : RecyclerView.ViewHolder(binding.root) {
-//
-//    private val itemImage by lazy {
-//        binding.image
-//    }
-//
-//    private val itemDescription by lazy {
-//        binding.description
-//    }
-//
-//    fun onBind(item: item) {
-//        itemDescription.text = item.description
-//
-//        Glide.with(this.itemView.context)
-//            .load(item.imageUrl)
-//            .error(R.mipmap.ic_launcher)
-//            .into(itemImage)
-//
-//
-//    }
-//}

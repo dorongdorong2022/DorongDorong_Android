@@ -52,6 +52,16 @@ object MainRemoteDataSource : MainSource {
         }
     }
 
+    override fun readVoice(token: String, readVoiceCallback: MainSource.ReadVoiceCallback?) {
+        runBlocking {
+            launch {
+                val site = "$serverInfo/"
+
+            }
+        }
+
+    }
+
     override fun read(readCallback: MainSource.ReadCallback?) {
         runBlocking {
             launch {

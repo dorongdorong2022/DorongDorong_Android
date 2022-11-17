@@ -11,6 +11,7 @@
     <!-- custom -->
     <color name='gray_1'>#dddddd</color>
     <color name='gray_2'>#656565</color>
+    <color name="gray_4">#242424</color>
     <color name='violet'>#7454D0</color>
     <color name="bg_black">#171717</color>
 

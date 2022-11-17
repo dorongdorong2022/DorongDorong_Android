@@ -69,6 +69,7 @@ class MainActivity :
             .commit()
 
         // Bottom nav
+        binding.bottomNavigation.selectedItemId = R.id.option_sound
         binding.bottomNavigation.setOnItemSelectedListener {
             startSound.stop()
 

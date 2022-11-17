@@ -6,6 +6,6 @@ interface SelectContract {
     }
 
     interface Model {
-
+        fun getData()
     }
 }
