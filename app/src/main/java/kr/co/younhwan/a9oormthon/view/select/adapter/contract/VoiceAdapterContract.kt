@@ -8,6 +8,8 @@ interface VoiceAdapterContract {
     interface View {
         var onClickFunOfBtn: ((LottieAnimationView) -> Unit)?
 
+        var onClickFunOfBtn2: ((Unit) -> Unit)?
+
         fun notifyAdapter()
     }
 

@@ -41,14 +41,22 @@ object MainRepository : MainSource {
     }
 
     override fun readTale(token: String, readTaleCallback: MainSource.ReadTaleCallback?) {
-
+        maybeRemoteDataSource.readTale(
+            token,
+            object : MainSource.ReadTaleCallback {
+                override fun onReadTale(list: ArrayList<soundItem>) {
+                    readTaleCallback?.onReadTale(list)
+                }
+            }
+        )
     }
 
-    override fun read(readCallback: MainSource.ReadCallback?) {
+    override fun read(token: String, readCallback: MainSource.ReadCallback?) {
         maybeRemoteDataSource.read(
+            token,
             object : MainSource.ReadCallback {
-                override fun onRead() {
-                    readCallback?.onRead()
+                override fun onRead(list: ArrayList<voiceItem>) {
+                    readCallback?.onRead(list)
                 }
             }
         )

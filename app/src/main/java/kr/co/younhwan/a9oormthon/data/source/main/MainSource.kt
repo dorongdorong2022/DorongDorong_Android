@@ -47,11 +47,12 @@ interface MainSource {
 
     // read
     fun read(
+        token: String,
         readCallback: ReadCallback?
     )
 
     interface ReadCallback {
-        fun onRead()
+        fun onRead(list: ArrayList<voiceItem>)
     }
 
     // readVoice

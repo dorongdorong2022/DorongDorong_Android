@@ -1,19 +1,21 @@
 package kr.co.younhwan.a9oormthon.view.main
 
-import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+import kotlinx.coroutines.*
 import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
 import kr.co.younhwan.a9oormthon.databinding.ActivityMainBinding
-import kr.co.younhwan.a9oormthon.adapter.MainAdapter
-import kr.co.younhwan.a9oormthon.view.main.sound.SoundFragment
+import kr.co.younhwan.a9oormthon.util.ImageLoader
 import kr.co.younhwan.a9oormthon.util.replace
+import kr.co.younhwan.a9oormthon.view.main.coach.frag1.coach1Fragment
+import kr.co.younhwan.a9oormthon.view.main.sound.SoundFragment
 import kr.co.younhwan.a9oormthon.view.main.tale.TaleFragment
 import kr.co.younhwan.a9oormthon.view.main.voice.VoiceFragment
 
@@ -44,9 +46,15 @@ class MainActivity :
         VoiceFragment()
     }
 
+    private val coach1Fragment: coach1Fragment by lazy {
+        coach1Fragment()
+    }
+
     // Audio
     var playing: Boolean = true
-    var startSound : MediaPlayer? = null
+    var startSound: MediaPlayer? = null
+
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +62,10 @@ class MainActivity :
         setContentView(binding.root)
 
         // Play audio
-        startSound = MediaPlayer.create(this, Uri.parse("https://dorongdorong.s3.ap-northeast-2.amazonaws.com/file/sound/%E1%84%89%E1%85%A2%E1%84%87%E1%85%A7%E1%86%AF%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B3%E1%86%B7.wav"))
-        startSound?.isLooping = true
+        startSound = MediaPlayer.create(
+            this,
+            R.raw.sound0
+        )
         startSound?.start()
 
         binding.fragmentContainerView.setOnClickListener {
@@ -76,16 +86,32 @@ class MainActivity :
             when (it.itemId) {
                 R.id.option_sound -> {
                     replace(R.id.fragmentContainerView, soundFragment)
+                    binding.mainContainer.setBackgroundResource(R.drawable.frame)
+                    startSound = MediaPlayer.create(
+                        this,
+                        R.raw.main_sound
+                    )
                     true
                 }
 
                 R.id.option_tale -> {
                     replace(R.id.fragmentContainerView, taleFragment)
+                    binding.mainContainer.setBackgroundResource(R.drawable.frame2)
+                    startSound = MediaPlayer.create(
+                        this,
+                        R.raw.tale_sound
+                    )
+                    startSound?.start()
                     true
                 }
 
                 R.id.option_voice -> {
                     replace(R.id.fragmentContainerView, voiceFragment)
+                    true
+                }
+
+                R.id.option_coaching -> {
+                    replace(R.id.fragmentContainerView, coach1Fragment)
                     true
                 }
 
@@ -105,12 +131,29 @@ class MainActivity :
     }
 
     override fun playAudio() {
-        if (playing){
+        if (playing) {
             startSound?.pause()
         } else {
             startSound?.start()
         }
 
         playing = !playing
+    }
+
+    override fun setBackground(url: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val bitmap = withContext(Dispatchers.IO) {
+                ImageLoader.loadImage(url)
+            }
+
+            val resources: Resources = getResources()
+            val drawable = BitmapDrawable(resources, bitmap)
+
+            binding.mainContainer.background = drawable
+        }
+    }
+
+    override fun selectedIcon() {
+        binding.bottomNavigation.selectedItemId = R.id.option_voice
     }
 }

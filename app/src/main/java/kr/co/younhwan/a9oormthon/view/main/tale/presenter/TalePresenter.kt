@@ -1,5 +1,6 @@
 package kr.co.younhwan.a9oormthon.view.main.tale.presenter
 
+import android.util.Log
 import kr.co.younhwan.a9oormthon.GlobalApplication
 import kr.co.younhwan.a9oormthon.adapter.contract.MainAdapterContract
 import kr.co.younhwan.a9oormthon.data.item
@@ -17,10 +18,12 @@ class TalePresenter(
     val token = GlobalApplication.prefs.getString("token", "no token")
 
     override fun getDate() {
+        Log.d("temp", token)
         mainData.readTale(
             token = token,
             readTaleCallback = object : MainSource.ReadTaleCallback {
                 override fun onReadTale(list: ArrayList<soundItem>) {
+                    Log.d("temp", list.toString())
                     mainAdapterModel.addItems(list)
                     mainAdapterView.notifyAdapter()
                 }

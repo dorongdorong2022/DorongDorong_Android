@@ -18,7 +18,7 @@ class MainAdapter :
     private var itemList: ArrayList<soundItem> = ArrayList()
 
     // 이벤트 리스너
-    override var onClickFunOfLocation: ((String) -> Unit)? = null
+    override var onClickFunOfLocation: ((soundItem) -> Unit)? = null
 
     override fun getItemCount() = itemList.size
 

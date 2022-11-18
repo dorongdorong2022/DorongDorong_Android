@@ -4,6 +4,8 @@ interface SoundContract {
     interface View {
         fun setSound(url:String)
 
+        fun setBackground(url: String)
+
         fun clickCloseBtn()
     }
 

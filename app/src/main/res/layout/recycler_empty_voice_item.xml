@@ -13,6 +13,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="41dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/pretendard_regular"
         android:text="음성 추가하기"
         android:textColor="#686868" />
 

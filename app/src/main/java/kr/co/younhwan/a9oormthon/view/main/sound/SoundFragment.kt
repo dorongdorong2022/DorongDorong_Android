@@ -120,4 +120,8 @@ class SoundFragment : Fragment(), SoundContract.View {
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
     }
+
+    override fun setBackground(url: String) {
+        (activity as MainActivity).setBackground(url)
+    }
 }

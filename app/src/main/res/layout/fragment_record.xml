@@ -21,6 +21,7 @@
         android:layout_below="@id/imageButton"
         android:layout_marginStart="24dp"
         android:layout_marginTop="29dp"
+        android:fontFamily="@font/pretendard_bold"
         android:text="아래 문장을 읽어주세요"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -35,12 +36,66 @@
         android:background="@drawable/layout_bg_3"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="49dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="햇살도 둥글둥글하게 뭉치는 맑은 날"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="꽃초롱 불 밝히듯 눈을 밝힐까"
+            android:textColor="@color/gray_2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="흙에서 자란 내마음 파아란 하늘빛"
+            android:textColor="@color/gray_2" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="하늘을 우러러 한 점 부끄럼 없기를"
+            android:textColor="@color/gray_2" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="49dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="많고 많은 사람 중에 그대 한 사람"
+            android:textColor="@color/gray_2" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:paddingTop="50dp"
-            android:paddingBottom="50dp" />
+            android:paddingBottom="50dp"
+            android:visibility="gone" />
     </LinearLayout>
 
     <ImageView

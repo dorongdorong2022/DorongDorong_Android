@@ -4,33 +4,26 @@
     <item
         android:id="@+id/option_voice"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_keyboard_voice_24"
+        android:icon="@drawable/mic_icon"
         android:title="보이스"
         app:showAsAction="withText" />
     <item
         android:id="@+id/option_tale"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:icon="@drawable/book"
         android:iconTint="#FFFFFF"
         android:title="제주설화"
         app:showAsAction="withText" />
-
     <item
         android:id="@+id/option_sound"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_energy_savings_leaf_24"
+        android:icon="@drawable/eco_1"
         android:title="제주소리"
         app:showAsAction="withText" />
     <item
         android:id="@+id/option_coaching"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_fact_check_24"
+        android:icon="@drawable/check_icon"
         android:title="태교코칭"
-        app:showAsAction="withText" />
-    <item
-        android:id="@+id/option_challenge"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_flag_24"
-        android:title="챌린지"
         app:showAsAction="withText" />
 </menu>

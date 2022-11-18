@@ -26,6 +26,8 @@ class VoiceAdapter :
     // 이벤트 리스너
     override var onClickFunOfBtn: ((LottieAnimationView) -> Unit)? = null
 
+    override var onClickFunOfBtn2: ((Unit) -> Unit)? = null
+
     override fun getItemCount() = itemList.size
 
     override fun notifyAdapter() = notifyDataSetChanged()
@@ -55,7 +57,8 @@ class VoiceAdapter :
                 val binding = RecyclerEmptyVoiceItemBinding.inflate(inflater, parent, false)
                 return VoiceEmptyViewHolder(
                     parent = parent,
-                    binding = binding
+                    binding = binding,
+                    listenerFuncOfBtn = onClickFunOfBtn2
                 )
             }
 
@@ -80,7 +83,7 @@ class VoiceAdapter :
             }
 
             2 -> {
-
+                (holder as VoiceEmptyViewHolder).onBind()
             }
 
             else -> {

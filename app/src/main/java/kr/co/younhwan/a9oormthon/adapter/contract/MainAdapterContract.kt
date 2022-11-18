@@ -7,7 +7,7 @@ import kr.co.younhwan.a9oormthon.data.taleItem
 
 interface MainAdapterContract {
     interface View {
-        var onClickFunOfLocation: ((String) -> Unit)?
+        var onClickFunOfLocation: ((soundItem) -> Unit)?
 
         fun notifyAdapter()
     }

@@ -10,17 +10,12 @@ class RecordPresenter(
 ) : RecordContract.Model{
     override fun getData() {
         val list = ArrayList<String>()
-        list.add("간장 공장 공장장은 강 공장장이고")
-        list.add("된장 공장 공장장은 장 공장장이다.")
-        list.add("")
-        list.add("의료정보에 대한 교환이 중요하다라고 보는 거에요.")
-        list.add("의사들이죠?")
-//        list.add("그 다음에 환자 입장에서는 당연히")
-//        list.add("의료의 질이 좋아져요.")
-//        list.add("자신들의 필요에 의해서 그거야말로 ")
-//        list.add("시장논리에서 그렇게 이미 하고 있는 것 아닌가요?")
-//        list.add("무엇이 사람들을 이런 분명한 비이성적인")
-//        list.add("의사결정을 하게 만들까요?")
+        list.add("햇살도 둥글둥글하게 뭉치는 맑은 날")
+        list.add("꽃초롱 불 밝히듯 눈을 밝힐까")
+        list.add("흙에서 자란 내마음 파아란 하늘빛")
+        list.add("하늘을 우러러 한 점 부끄럼 없기를")
+        list.add("많고 많은 사람 중에 그대 한 사람?")
+
         recordAdapterModel.addItems(list)
         recordAdapterView.notifyAdapter()
     }

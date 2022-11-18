@@ -13,6 +13,10 @@ class VoiceViewHolder(
     private val listenerFuncOfBtn: ((LottieAnimationView) -> Unit)?
 ) : RecyclerView.ViewHolder(binding.root) {
 
+    private val name by lazy {
+        binding.name
+    }
+
     private val btn by lazy {
         binding.playBtn
     }
@@ -22,14 +26,16 @@ class VoiceViewHolder(
     }
 
     fun onBind(voiceItem: voiceItem) {
+        name.text = voiceItem.name
+
         btn.setOnClickListener {
-            it.isSelected = true
+            it.isSelected = !it.isSelected
             listenerFuncOfBtn?.invoke(equalizer)
         }
 
         equalizer.addAnimatorListener(object : Animator.AnimatorListener{
             override fun onAnimationCancel(p0: Animator?) {
-
+                btn.isSelected = false
             }
 
             override fun onAnimationEnd(p0: Animator?) {
@@ -40,8 +46,10 @@ class VoiceViewHolder(
             }
 
             override fun onAnimationStart(p0: Animator?) {
-
+                btn.isSelected = true
             }
         })
     }
 }
+
+

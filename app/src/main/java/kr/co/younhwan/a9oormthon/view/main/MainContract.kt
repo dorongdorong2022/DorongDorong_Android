@@ -9,6 +9,10 @@ interface MainContract {
         fun changeBottomSheetVisibility(shown: Boolean)
 
         fun playAudio()
+
+        fun setBackground(url: String)
+
+        fun selectedIcon()
     }
 
     interface Model {

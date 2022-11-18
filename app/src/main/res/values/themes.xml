@@ -11,12 +11,14 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowIsTranslucent">true</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="Theme.A9oormthon.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="Theme.A9oormthon.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -31,6 +33,7 @@
         <item name="android:strokeWidth">1</item>
         <item name="android:textColor">@color/gray_1</item>
         <item name="backgroundTint">#330C0C0C</item>
+        <item name="backgroundColor">#330C0C0C</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Button.Rounded</item>
     </style>
 
@@ -65,5 +68,11 @@
     <style name="MyCheckbox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
         <item name="android:button">@drawable/selector_check_box</item>
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="temp">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
     </style>
 </resources>

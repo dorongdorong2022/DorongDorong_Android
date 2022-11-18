@@ -1,19 +1,16 @@
 package kr.co.younhwan.a9oormthon.view.splash
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
-import kr.co.younhwan.a9oormthon.GlobalApplication
+import androidx.appcompat.app.AppCompatActivity
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
 import kr.co.younhwan.a9oormthon.databinding.ActivitySplashBinding
 import kr.co.younhwan.a9oormthon.view.main.MainActivity
 import kr.co.younhwan.a9oormthon.view.splash.presenter.SplashContract
 import kr.co.younhwan.a9oormthon.view.splash.presenter.SplashPresenter
+
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity :
@@ -35,8 +32,11 @@ class SplashActivity :
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Get Key
-        presenter.getKey()
+        Handler().postDelayed(Runnable {
+            val intent = Intent(this@SplashActivity, SplashActivity::class.java) //화면 전환
+            presenter.getKey()
+        }, 1500) //딜레이 타임 조절
+
     }
 
     override fun startMainAct() {

@@ -14,7 +14,7 @@ import kr.co.younhwan.a9oormthon.databinding.RecyclerItemBinding
 class MainViewHolder(
     private val parent: ViewParent,
     binding: RecyclerItemBinding,
-    private val listenerFuncOfLocation: ((String) -> Unit)?
+    private val listenerFuncOfLocation: ((soundItem) -> Unit)?
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private val itemImage by lazy {
@@ -34,7 +34,7 @@ class MainViewHolder(
             .into(itemImage)
 
         itemView.setOnClickListener {
-            listenerFuncOfLocation?.invoke(item.jejuSoundUrl)
+            listenerFuncOfLocation?.invoke(item)
         }
     }
 }

@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kr.co.younhwan.a9oormthon.data.soundItem
 import kr.co.younhwan.a9oormthon.data.taleItem
+import kr.co.younhwan.a9oormthon.data.voiceItem
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -115,7 +116,7 @@ object MainRemoteDataSource : MainSource {
 
         runBlocking {
             launch {
-                val site = "$serverInfo/jejustory/select/list"
+                val site = "$serverInfo/jejustory/select/list/10"
                 val request = Request.Builder().url(site).header("token", token).get().build()
 
                 client.newCall(request).enqueue(object : Callback {
@@ -129,16 +130,15 @@ object MainRemoteDataSource : MainSource {
                         if (response.isSuccessful) {
                             val resultText = response.body?.string()!!.trim()
                             val json = JSONObject(resultText)
-
-                            val data = JSONArray(json["jejuSoundList"].toString())
+                            val data = JSONArray(json["jejuStoryList"].toString())
 
                             for (i in 0 until data.length()) {
                                 val obj = data.getJSONObject(i)
 
                                 list.add(
                                     soundItem(
-                                        jejuSoundImgUrl = obj.getString("jejuStoryVoiceUrl") ?: "",
-                                        jejuSoundThumbnailImgUrl = obj.getString("jejuStoryThubnail_img_url") ?: "",
+                                        jejuSoundImgUrl = obj.getString("jejuStoryImgUrl") ?: "",
+                                        jejuSoundThumbnailImgUrl = obj.getString("jejuStoryThumbnailImgUrl") ?: "",
                                         jejuSoundMsg = obj.getString("jejuStoryTitle") ?: "",
                                         jejuSoundNo = obj.getString("jejuStoryNo") ?: "",
                                         jejuSoundUrl = ""
@@ -158,23 +158,47 @@ object MainRemoteDataSource : MainSource {
 
     }
 
-    override fun read(readCallback: MainSource.ReadCallback?) {
+    override fun read(token:String, readCallback: MainSource.ReadCallback?) {
+        val list = ArrayList<voiceItem>()
+
         runBlocking {
             launch {
-                val site = "$serverInfo/"
-
-                val request = Request.Builder().url(site).get().build()
-
+                val site = "$serverInfo/jejustoryvoice/select/list/all"
+                val request = Request.Builder().url(site).header("token", token).get().build()
 
                 client.newCall(request).enqueue(object : Callback {
                     override fun onFailure(call: Call, e: IOException) {
-
+                        CoroutineScope(Dispatchers.Main).launch {
+                            readCallback?.onRead(list)
+                        }
                     }
 
                     override fun onResponse(call: Call, response: Response) {
                         if (response.isSuccessful) {
                             val resultText = response.body?.string()!!.trim()
                             val json = JSONObject(resultText)
+
+                            val data = JSONArray(json["jejuStoryVoiceList"].toString())
+
+                            Log.d("temp", data.toString())
+
+                            for (i in 0 until data.length()) {
+                                val obj = data.getJSONObject(i)
+
+                                list.add(
+                                    voiceItem(
+                                        id = obj.getInt("jejuStoryVoiceSeqNo"),
+                                        name = obj.getString("jejuStoryVoiceNm"),
+                                        selected = obj.getBoolean("checkYn"),
+                                        audioFile = obj.getString("jejuStoryVoiceUrl"),
+                                        type = 1
+                                    )
+                                )
+                            }
+
+                            CoroutineScope(Dispatchers.Main).launch {
+                                readCallback?.onRead(list)
+                            }
                         }
                     }
                 })
@@ -182,79 +206,4 @@ object MainRemoteDataSource : MainSource {
         }
     }
 
-
-//    override fun create(
-//        kakaoAccountId: Long,
-//        orderItem: OrderItem,
-//        createCallback: OrderSource.CreateCallback?
-//    ) {
-//        runBlocking {
-//            var orderId = -1
-//
-//            launch {
-//                // API 서버 주소
-//                val site = serverInfo
-//
-//                // 새로운 데이터 생성을 위한 POST Request 생성
-//                val jsonData = JSONObject()
-//
-//                jsonData.put("user_id", kakaoAccountId) // 주문 정보
-//                jsonData.put("name", orderItem.name)
-//                jsonData.put("status", orderItem.status)
-//
-//                jsonData.put("receiver", orderItem.receiver) // 배달 정보
-//                jsonData.put("phone", orderItem.phone)
-//                jsonData.put("address", orderItem.address)
-//
-//                jsonData.put("requirement", orderItem.requirement) /// 배달 요청사항
-//                jsonData.put("point", orderItem.point)
-//                jsonData.put("detective_handling_method", orderItem.detectiveHandlingMethod)
-//
-//                jsonData.put("payment", orderItem.payment) // 결제수단
-//
-//                jsonData.put("original_price", orderItem.originalPrice) // 주문 상품 확인
-//                jsonData.put("event_price", orderItem.eventPrice)
-//                jsonData.put("be_paid_price", orderItem.bePaidPrice)
-//
-//                val products = JSONArray()
-//                for (index in 0 until orderItem.products.size) {
-//                    val product = JSONObject()
-//                    product.put("product_id", orderItem.products[index].productId)
-//                    product.put("count", orderItem.products[index].countInBasket)
-//                    if (orderItem.products[index].onSale) {
-//                        product.put("price", orderItem.products[index].eventPrice)
-//                    } else {
-//                        product.put("price", orderItem.products[index].productPrice)
-//                    }
-//                    products.put(product)
-//                }
-//                jsonData.put("products", products)
-//
-//                val requestBody = jsonData.toString().toRequestBody(jsonMediaType)
-//                val request = Request.Builder().url(site).post(requestBody).build()
-//
-//                // 응답
-//                client.newCall(request).enqueue(object : Callback {
-//                    override fun onFailure(call: Call, e: IOException) {
-//                        CoroutineScope(Dispatchers.Main).launch {
-//                            createCallback?.onCreate(orderId)
-//                        }
-//                    }
-//
-//                    override fun onResponse(call: Call, response: Response) {
-//                        val resultText = response.body?.string()!!.trim()
-//                        val json = JSONObject(resultText)
-//                        val success = json.getBoolean("success")
-//
-//                        if (success) {
-//                            orderId = json.getInt("order_id")
-//                        }
-//
-//                        CoroutineScope(Dispatchers.Main).launch {
-//                            createCallback?.onCreate(orderId)
-//                        }
-//                    }
-//                })
-//            }
-//        }
 }

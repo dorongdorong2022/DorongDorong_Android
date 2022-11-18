@@ -22,9 +22,10 @@ class SoundPresenter(
         }
     }
 
-    fun onClickFunOfLocation(soundUrl: String) {
+    fun onClickFunOfLocation(soundItem: soundItem) {
         view.clickCloseBtn()
-        view.setSound(soundUrl)
+        view.setSound(soundItem.jejuSoundUrl)
+        view.setBackground(soundItem.jejuSoundImgUrl)
     }
 
     override fun getData() {
