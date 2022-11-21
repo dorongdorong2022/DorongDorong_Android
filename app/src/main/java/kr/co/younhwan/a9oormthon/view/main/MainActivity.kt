@@ -1,12 +1,16 @@
 package kr.co.younhwan.a9oormthon.view.main
 
 import android.content.res.Resources
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import android.window.SplashScreen
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import kotlinx.coroutines.*
 import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
@@ -54,9 +58,10 @@ class MainActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         // 오디오 선언 및 재생
         audio = MediaPlayer.create(this, R.raw.sound0)
@@ -132,7 +137,7 @@ class MainActivity :
                 ImageLoader.loadImage(url)
             }
 
-            val resources: Resources = getResources()
+            val resources: Resources = resources
             val drawable = BitmapDrawable(resources, bitmap)
 
             binding.mainContainer.background = drawable
