@@ -3,14 +3,12 @@ package kr.co.younhwan.a9oormthon.view.main.sound
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import kotlinx.coroutines.NonDisposableHandle.parent
 import kr.co.younhwan.a9oormthon.adapter.MainAdapter
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
 import kr.co.younhwan.a9oormthon.databinding.FragmentSoundBinding
@@ -105,12 +103,12 @@ class SoundFragment : Fragment(), SoundContract.View {
     }
 
     override fun setSound(url: String) {
-        (activity as MainActivity).startSound?.stop()
+        (activity as MainActivity).audio?.stop()
 
-        (activity as MainActivity).startSound =
+        (activity as MainActivity).audio =
             MediaPlayer.create(activity, Uri.parse(url))
 
-        (activity as MainActivity).startSound?.start()
+        (activity as MainActivity).audio?.start()
     }
 
     override fun clickCloseBtn() {

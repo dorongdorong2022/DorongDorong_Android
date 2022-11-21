@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:background="@drawable/frame2"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/topContaier"
@@ -23,15 +22,15 @@
             android:text="설화변경"
             android:textAppearance="@style/MyTextView" />
 
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            style="@style/MyButtonStyle"-->
-<!--            android:id="@+id/changeLocation"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="18dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:textAppearance="@style/MyTextView"-->
-<!--            android:text="장소변경" />-->
+        <!--        <com.google.android.material.button.MaterialButton-->
+        <!--            style="@style/MyButtonStyle"-->
+        <!--            android:id="@+id/changeLocation"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="18dp"-->
+        <!--            android:layout_marginStart="24dp"-->
+        <!--            android:textAppearance="@style/MyTextView"-->
+        <!--            android:text="장소변경" />-->
 
         <ImageView
             android:id="@+id/mic"
@@ -49,8 +48,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/topContaier"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="36dp"
-        >
+        android:layout_marginTop="36dp">
 
         <RelativeLayout
             android:id="@+id/standard_bottom_sheet"
@@ -82,8 +80,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="68dp"
-                android:layout_marginEnd="24dp"
-                />
+                android:layout_marginEnd="24dp" />
         </RelativeLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </RelativeLayout>

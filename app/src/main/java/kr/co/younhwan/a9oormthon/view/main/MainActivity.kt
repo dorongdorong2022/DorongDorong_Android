@@ -1,11 +1,8 @@
 package kr.co.younhwan.a9oormthon.view.main
 
 import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.*
@@ -51,63 +48,61 @@ class MainActivity :
     }
 
     // Audio
-    var startSound: MediaPlayer? = null
+    lateinit var audio: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Play audio
-        startSound = MediaPlayer.create(
-            this,
-            R.raw.sound0
-        )
+        // 오디오 선언 및 재생
+        audio = MediaPlayer.create(this, R.raw.sound0)
         playAudio()
 
+        // 전체 컨테이너 이벤트 설정
         binding.fragmentContainerView.setOnClickListener {
             playAudio()
         }
 
-
-        // Set Fragment
+        // 초기 프래그먼트 설정
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, soundFragment)
             .commit()
 
-        // Bottom nav
+        // 바텀 네비게이션 이벤트 설정
         binding.bottomNavigation.selectedItemId = R.id.option_sound
         binding.bottomNavigation.setOnItemSelectedListener {
-            startSound?.stop()
+            audio.pause()
 
             when (it.itemId) {
                 R.id.option_sound -> {
+                    // 프래그먼트 변경
                     replace(R.id.fragmentContainerView, soundFragment)
-                    binding.mainContainer.setBackgroundResource(R.drawable.frame)
-                    startSound = MediaPlayer.create(
-                        this,
-                        R.raw.main_sound
-                    )
+
+                    // 오디오 변경 재생
+                    audio = MediaPlayer.create(this, R.raw.main_sound)
+                    playAudio()
                     true
                 }
 
                 R.id.option_tale -> {
+                    // 프래그먼트 변경
                     replace(R.id.fragmentContainerView, taleFragment)
-                    binding.mainContainer.setBackgroundResource(R.drawable.frame2)
-                    startSound = MediaPlayer.create(
-                        this,
-                        R.raw.tale_sound
-                    )
-                    startSound?.start()
+
+                    // 오디오 변경 및 재생
+                    audio = MediaPlayer.create(this, R.raw.tale_sound)
+                    playAudio()
                     true
                 }
 
                 R.id.option_voice -> {
+                    // 프래그래먼트 변경
                     replace(R.id.fragmentContainerView, voiceFragment)
                     true
                 }
 
                 R.id.option_coaching -> {
+                    // 프래그먼트 변경
                     replace(R.id.fragmentContainerView, coach1Fragment)
                     true
                 }
@@ -119,23 +114,14 @@ class MainActivity :
 
     override fun getAct() = this
 
-    override fun changeBottomSheetVisibility(shown: Boolean) {
-        if (shown) {
-            binding.fragmentContainerView.translationZ = 90f
-        } else {
-            binding.fragmentContainerView.translationZ = 0f
-        }
-    }
+    override fun changeBottomSheetVisibility(shown: Boolean) =
+        if (shown) binding.fragmentContainerView.translationZ = 90f
+        else binding.fragmentContainerView.translationZ = 0f
 
-    override fun playAudio() {
-        if (startSound != null) {
-            if (startSound?.isPlaying == true) {
-                startSound?.pause()
-            } else {
-                startSound?.start()
-            }
-        }
-    }
+
+    override fun playAudio() =
+        if (audio.isPlaying) audio.pause()
+        else audio.start()
 
     override fun setBackground(url: String) {
         CoroutineScope(Dispatchers.Main).launch {

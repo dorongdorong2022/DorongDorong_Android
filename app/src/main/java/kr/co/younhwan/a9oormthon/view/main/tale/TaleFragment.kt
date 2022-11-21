@@ -3,7 +3,6 @@ package kr.co.younhwan.a9oormthon.view.main.tale
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
 import kr.co.younhwan.a9oormthon.databinding.FragmentTaleBinding
 import kr.co.younhwan.a9oormthon.util.replace
 import kr.co.younhwan.a9oormthon.view.main.MainActivity
-import kr.co.younhwan.a9oormthon.view.main.sound.presenter.SoundPresenter
 import kr.co.younhwan.a9oormthon.view.main.tale.presenter.TaleContract
 import kr.co.younhwan.a9oormthon.view.main.tale.presenter.TalePresenter
 import kr.co.younhwan.a9oormthon.view.main.voice.VoiceFragment
@@ -70,7 +68,7 @@ class TaleFragment : Fragment(), TaleContract.View {
                     }
 
                     else ->{
-                        (activity as MainActivity).startSound?.start()
+                        (activity as MainActivity).audio?.start()
                     }
                 }
             }
@@ -80,7 +78,7 @@ class TaleFragment : Fragment(), TaleContract.View {
         // Set mic
         binding.mic.setOnClickListener {
             val intent = Intent(activity, SelectActivity::class.java)
-            (activity as MainActivity).startSound?.pause()
+            (activity as MainActivity).audio?.pause()
             childForResult.launch(intent)
         }
 
