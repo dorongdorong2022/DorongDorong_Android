@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.adapter.MainAdapter
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
 import kr.co.younhwan.a9oormthon.databinding.ActivitySelectBinding
@@ -77,9 +78,16 @@ class SelectActivity :
             startSound = null
             startSound = MediaPlayer.create(
                 this,
-                Uri.parse("https://dorongdorong.s3.ap-northeast-2.amazonaws.com/file/sound/%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%89%E1%85%A5%E1%86%BC.wav")
+                R.raw.basic
             )
         }
+    }
+
+    override fun initaudio() {
+        startSound = MediaPlayer.create(
+            this,
+            R.raw.basic
+        )
     }
 
     override fun fin() {

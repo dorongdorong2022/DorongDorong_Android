@@ -51,10 +51,7 @@ class MainActivity :
     }
 
     // Audio
-    var playing: Boolean = true
     var startSound: MediaPlayer? = null
-
-    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +63,7 @@ class MainActivity :
             this,
             R.raw.sound0
         )
-        startSound?.start()
+        playAudio()
 
         binding.fragmentContainerView.setOnClickListener {
             playAudio()
@@ -131,13 +128,13 @@ class MainActivity :
     }
 
     override fun playAudio() {
-        if (playing) {
-            startSound?.pause()
-        } else {
-            startSound?.start()
+        if (startSound != null) {
+            if (startSound?.isPlaying == true) {
+                startSound?.pause()
+            } else {
+                startSound?.start()
+            }
         }
-
-        playing = !playing
     }
 
     override fun setBackground(url: String) {

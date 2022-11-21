@@ -26,6 +26,8 @@ class SelectPresenter(
         voiceAdapterView.onClickFunOfBtn2 = {
             onClickListenerOfBtn2()
         }
+
+        view.initaudio()
     }
 
     private fun onClickListenerOfBtn(view2: LottieAnimationView) {

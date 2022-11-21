@@ -5,6 +5,8 @@ interface SelectContract {
         fun startAudio()
 
         fun fin()
+
+        fun initaudio()
     }
 
     interface Model {
