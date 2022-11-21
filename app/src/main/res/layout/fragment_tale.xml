@@ -16,7 +16,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/changeTale"
-            style="@style/MyButtonStyle"
+            style="@style/changeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="설화변경"
