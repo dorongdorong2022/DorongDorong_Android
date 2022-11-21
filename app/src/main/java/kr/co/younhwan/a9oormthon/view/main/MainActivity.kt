@@ -4,7 +4,9 @@ import android.content.res.Resources
 import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.window.SplashScreen
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import kotlinx.coroutines.*
 import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
@@ -52,6 +54,7 @@ class MainActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

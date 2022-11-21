@@ -16,18 +16,17 @@ class SplashPresenter(
     private val mainData: MainRepository
 ) : SplashContract.Model {
 
-    override fun getKey() {
-        val token = GlobalApplication.prefs.getString("token", "no token")
+    private val token = GlobalApplication.prefs.getString("token", "no token")
 
+    override fun getKey() {
         if (token == "no token") {
-            val uuid = UUID.randomUUID().toString();
+            val uuid = UUID.randomUUID().toString()
             mainData.readKey(
                 uuid,
                 object : MainSource.ReadKeyCallback {
                     override fun onReadKey(token: String) {
-                        if (token != "") {
+                        if (token != "")
                             GlobalApplication.prefs.setString("token", token)
-                        }
 
                         view.startMainAct()
                     }

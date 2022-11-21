@@ -11,7 +11,6 @@ import kr.co.younhwan.a9oormthon.view.main.MainActivity
 import kr.co.younhwan.a9oormthon.view.splash.presenter.SplashContract
 import kr.co.younhwan.a9oormthon.view.splash.presenter.SplashPresenter
 
-
 @SuppressLint("CustomSplashScreen")
 class SplashActivity :
     AppCompatActivity(),
@@ -33,20 +32,16 @@ class SplashActivity :
         setContentView(binding.root)
 
         Handler().postDelayed(Runnable {
-            val intent = Intent(this@SplashActivity, SplashActivity::class.java) //화면 전환
-            presenter.getKey()
+            startMainAct()
         }, 1500) //딜레이 타임 조절
 
     }
 
     override fun startMainAct() {
-        // Pause splash image
-        // binding.splashImage.pauseAnimation()
-
-        // Start main act
+        // 메인 엑티비티 실행
         startActivity(Intent(this, MainActivity::class.java))
 
-        // Finish splash act
+        // 현재 엑티비티 종료
         finish()
     }
 
