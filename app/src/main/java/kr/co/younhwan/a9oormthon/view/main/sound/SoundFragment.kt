@@ -4,6 +4,7 @@ import android.content.res.Resources
 import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -114,8 +115,10 @@ class SoundFragment : Fragment(), SoundContract.View {
     override fun toggleBottomSheetVisibility() {
         if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
             behavior.state = BottomSheetBehavior.STATE_HIDDEN
+            binding.changeLocation.animate().alpha(1.0f)
         } else {
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            binding.changeLocation.animate().alpha(0.0f)
         }
     }
 }

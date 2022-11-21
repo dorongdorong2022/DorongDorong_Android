@@ -14,12 +14,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="62dp"
-        android:text="장소변경" />
+        android:text="@string/change_sound_btn" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/changeLocation"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="36dp">
 

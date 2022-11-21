@@ -7,6 +7,9 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- 제주소리 프래그먼트 -->
+    <string name="change_sound_btn">장소변경</string>
+
+    <!-- 제주설화 프래그먼트 -->
+    <string name="change_tale_btn">설화변경</string>
 </resources>

@@ -19,8 +19,7 @@
             style="@style/changeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="설화변경"
-            android:textAppearance="@style/MyTextView" />
+            android:text="@string/change_tale_btn" />
 
         <ImageView
             android:id="@+id/mic"
