@@ -45,6 +45,7 @@ class TaleFragment : Fragment(), TaleContract.View {
         MainAdapter()
     }
 
+    // fragment
     private val voiceFragment: VoiceFragment by lazy {
         VoiceFragment()
     }
@@ -61,6 +62,18 @@ class TaleFragment : Fragment(), TaleContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 데이터 요청
+        presenter.getDate()
+
+        // 리사이클러뷰 설정
+        binding.recycler.adapter = adapter
+        binding.recycler.addItemDecoration(adapter.RecyclerDecoration())
+        binding.recycler.layoutManager = object : LinearLayoutManager(context) {
+            override fun canScrollHorizontally() = false
+            override fun canScrollVertically() = true
+        }
+
+        // [마이크] 버튼 이벤트 설정
         val childForResult =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 when (result.resultCode) {
@@ -70,28 +83,14 @@ class TaleFragment : Fragment(), TaleContract.View {
                     }
 
                     else ->{
-                        (activity as MainActivity).audio?.start()
+                        (activity as MainActivity).audio.start()
                     }
                 }
             }
 
-
-        // 데이터 요청
-        presenter.getDate()
-
-        // Set mic
         binding.mic.setOnClickListener {
-            val intent = Intent(activity, SelectActivity::class.java)
-            (activity as MainActivity).audio?.pause()
-            childForResult.launch(intent)
-        }
-
-        // 리사이클러뷰 설정
-        binding.recycler.adapter = adapter
-        binding.recycler.addItemDecoration(adapter.RecyclerDecoration())
-        binding.recycler.layoutManager = object : LinearLayoutManager(context) {
-            override fun canScrollHorizontally() = false
-            override fun canScrollVertically() = true
+            (activity as MainActivity).audio.pause()
+            childForResult.launch(Intent(activity, SelectActivity::class.java))
         }
 
         // [설화변경] 버튼 이벤트 설정
