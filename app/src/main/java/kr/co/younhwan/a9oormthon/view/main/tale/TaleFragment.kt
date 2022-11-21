@@ -84,6 +84,7 @@ class TaleFragment : Fragment(), TaleContract.View {
 
         // Set bottom sheet recycler view
         binding.recycler.adapter = adapter
+        binding.recycler.addItemDecoration(adapter.RecyclerDecoration())
         binding.recycler.layoutManager = object : LinearLayoutManager(context) {
             override fun canScrollHorizontally() = false
             override fun canScrollVertically() = true
