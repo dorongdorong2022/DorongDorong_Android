@@ -1,11 +1,13 @@
 package kr.co.younhwan.a9oormthon.view.main.tale
 
 import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -73,6 +75,8 @@ class TaleFragment : Fragment(), TaleContract.View {
                 }
             }
 
+
+        // 데이터 요청
         presenter.getDate()
 
         // Set mic
@@ -82,7 +86,7 @@ class TaleFragment : Fragment(), TaleContract.View {
             childForResult.launch(intent)
         }
 
-        // Set bottom sheet recycler view
+        // 리사이클러뷰 설정
         binding.recycler.adapter = adapter
         binding.recycler.addItemDecoration(adapter.RecyclerDecoration())
         binding.recycler.layoutManager = object : LinearLayoutManager(context) {
@@ -90,53 +94,54 @@ class TaleFragment : Fragment(), TaleContract.View {
             override fun canScrollVertically() = true
         }
 
-        // Change location
+        // [설화변경] 버튼 이벤트 설정
         binding.changeTale.setOnClickListener {
-            if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
-                behavior.state = BottomSheetBehavior.STATE_HIDDEN
-            } else {
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }
+            toggleBottomSheetVisibility()
         }
 
-        // Bottom sheet
-        binding.closeBtnContainer2.setOnClickListener {
-            if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
-                behavior.state = BottomSheetBehavior.STATE_HIDDEN
-            } else {
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }
-        }
-
-        binding.closeBtn2.setOnClickListener {
-            if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
-                behavior.state = BottomSheetBehavior.STATE_HIDDEN
-            } else {
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }
-        }
-
-        behavior = BottomSheetBehavior.from<View>(binding.standardBottomSheet)
+        // 바텀 시트 설정
+        behavior = BottomSheetBehavior.from(binding.standardBottomSheet)
         behavior.isHideable = true
-        behavior.state = BottomSheetBehavior.STATE_HIDDEN
         behavior.isDraggable = false
+        behavior.state = BottomSheetBehavior.STATE_HIDDEN
+
+        binding.closeBtn2.setOnClickListener { toggleBottomSheetVisibility() }
+        binding.closeBtnContainer2.setOnClickListener { toggleBottomSheetVisibility() }
 
         behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {}
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                val parent = activity as MainActivity
-
-                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                    parent.onToggleBottomSheetVisibility(false)
-                } else {
-                    parent.onToggleBottomSheetVisibility(true)
-                }
+                if (newState == BottomSheetBehavior.STATE_HIDDEN)
+                    (activity as MainActivity).onToggleBottomSheetVisibility(shown = false)
+                else
+                    (activity as MainActivity).onToggleBottomSheetVisibility(shown = true)
             }
         })
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (behavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+                    toggleBottomSheetVisibility()
+                } else {
+                    requireActivity().finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    override fun toggleBottomSheetVisibility() {
+        if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
+            behavior.state = BottomSheetBehavior.STATE_HIDDEN
+            binding.topContaier.animate().alpha(1.0f)
+        } else {
+            behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            binding.topContaier.animate().alpha(0.0f)
+        }
     }
 }
