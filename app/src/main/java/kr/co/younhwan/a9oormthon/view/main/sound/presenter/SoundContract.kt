@@ -6,7 +6,7 @@ interface SoundContract {
 
         fun setBackground(url: String)
 
-        fun clickCloseBtn()
+        fun toggleBottomSheetVisibility()
     }
 
     interface Model {

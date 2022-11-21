@@ -127,9 +127,9 @@ class TaleFragment : Fragment(), TaleContract.View {
                 val parent = activity as MainActivity
 
                 if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                    parent.changeBottomSheetVisibility(false)
+                    parent.onToggleBottomSheetVisibility(false)
                 } else {
-                    parent.changeBottomSheetVisibility(true)
+                    parent.onToggleBottomSheetVisibility(true)
                 }
             }
         })

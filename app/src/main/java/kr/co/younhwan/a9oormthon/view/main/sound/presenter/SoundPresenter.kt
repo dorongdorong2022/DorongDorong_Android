@@ -23,20 +23,25 @@ class SoundPresenter(
     }
 
     fun onClickFunOfLocation(soundItem: soundItem) {
-        view.clickCloseBtn()
+        view.toggleBottomSheetVisibility()
         view.setSound(soundItem.jejuSoundUrl)
         view.setBackground(soundItem.jejuSoundImgUrl)
     }
 
     override fun getData() {
-        mainData.readSound(
-            token,
-            object : MainSource.ReadSoundCallback {
-                override fun onReadSound(list: ArrayList<soundItem>) {
-                    mainAdapterModel.addItems(list)
-                    mainAdapterView.notifyAdapter()
+        if(token != "no token"){
+            // 토근이 존재할 때
+            mainData.readSound(
+                token,
+                object : MainSource.ReadSoundCallback {
+                    override fun onReadSound(list: ArrayList<soundItem>) {
+                        mainAdapterModel.addItems(list)
+                        mainAdapterView.notifyAdapter()
+                    }
                 }
-            }
-        )
+            )
+        } else{
+            // 토큰이 존재하지 않을 때
+        }
     }
 }

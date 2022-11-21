@@ -114,7 +114,7 @@ class MainActivity :
 
     override fun getAct() = this
 
-    override fun changeBottomSheetVisibility(shown: Boolean) =
+    override fun onToggleBottomSheetVisibility(shown: Boolean) =
         if (shown) binding.fragmentContainerView.translationZ = 90f
         else binding.fragmentContainerView.translationZ = 0f
 

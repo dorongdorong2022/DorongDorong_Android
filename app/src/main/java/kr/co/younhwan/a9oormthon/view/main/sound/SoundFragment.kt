@@ -50,54 +50,38 @@ class SoundFragment : Fragment(), SoundContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Get data
+        // 데이터 요청
         presenter.getData()
 
-        // Set bottom sheet recycler view
+        // 리사이클러뷰 설정
         binding.recycler.adapter = adapter
         binding.recycler.layoutManager = object : LinearLayoutManager(context) {
             override fun canScrollHorizontally() = false
             override fun canScrollVertically() = true
         }
 
-        // Change location
+        // [장소변경] 버튼 이벤트 설정
         binding.changeLocation.setOnClickListener {
-            if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
-                behavior.state = BottomSheetBehavior.STATE_HIDDEN
-            } else {
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }
+            toggleBottomSheetVisibility()
         }
 
-        // Bottom sheet
-        binding.closeBtnContainer.setOnClickListener {
-            if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
-                behavior.state = BottomSheetBehavior.STATE_HIDDEN
-            } else {
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }
-        }
-
-        binding.closeBtn.setOnClickListener {
-            clickCloseBtn()
-        }
-
-        behavior = BottomSheetBehavior.from<View>(binding.standardBottomSheet)
+        // 바텀 시트 설정
+        behavior = BottomSheetBehavior.from(binding.standardBottomSheet)
         behavior.isHideable = true
-        behavior.state = BottomSheetBehavior.STATE_HIDDEN
         behavior.isDraggable = false
+        behavior.state = BottomSheetBehavior.STATE_HIDDEN
+
+        binding.closeBtn.setOnClickListener { toggleBottomSheetVisibility() }
+        binding.closeBtnContainer.setOnClickListener { toggleBottomSheetVisibility() }
 
         behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {}
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                val parent = activity as MainActivity
-
-                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                    parent.changeBottomSheetVisibility(false)
-                } else {
-                    parent.changeBottomSheetVisibility(true)
-                }
+                if (newState == BottomSheetBehavior.STATE_HIDDEN)
+                    (activity as MainActivity).onToggleBottomSheetVisibility(shown = false)
+                else
+                    (activity as MainActivity).onToggleBottomSheetVisibility(shown = true)
             }
         })
     }
@@ -111,15 +95,13 @@ class SoundFragment : Fragment(), SoundContract.View {
         (activity as MainActivity).audio?.start()
     }
 
-    override fun clickCloseBtn() {
-        if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
-            behavior.state = BottomSheetBehavior.STATE_HIDDEN
-        } else {
-            behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        }
-    }
-
     override fun setBackground(url: String) {
         (activity as MainActivity).setBackground(url)
+    }
+
+    override fun toggleBottomSheetVisibility() {
+        if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) behavior.state =
+            BottomSheetBehavior.STATE_HIDDEN
+        else behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 }
