@@ -1,5 +1,6 @@
 package kr.co.younhwan.a9oormthon.view.main.sound
 
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
@@ -7,6 +8,7 @@ import android.net.Uri
 import android.opengl.Visibility
 import android.os.Bundle
 import android.view.*
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -91,6 +93,21 @@ class SoundFragment : Fragment(), SoundContract.View {
                     (activity as MainActivity).onToggleBottomSheetVisibility(shown = true)
             }
         })
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (behavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+                    toggleBottomSheetVisibility()
+                } else {
+                    requireActivity().finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
     override fun setSound(url: String) {
