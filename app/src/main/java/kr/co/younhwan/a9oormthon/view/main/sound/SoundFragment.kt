@@ -1,17 +1,22 @@
 package kr.co.younhwan.a9oormthon.view.main.sound
 
+import android.content.res.Resources
+import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kr.co.younhwan.a9oormthon.adapter.MainAdapter
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
 import kr.co.younhwan.a9oormthon.databinding.FragmentSoundBinding
+import kr.co.younhwan.a9oormthon.util.ImageLoader
 import kr.co.younhwan.a9oormthon.view.main.MainActivity
 import kr.co.younhwan.a9oormthon.view.main.sound.presenter.SoundContract
 import kr.co.younhwan.a9oormthon.view.main.sound.presenter.SoundPresenter
@@ -55,6 +60,7 @@ class SoundFragment : Fragment(), SoundContract.View {
 
         // 리사이클러뷰 설정
         binding.recycler.adapter = adapter
+        binding.recycler.addItemDecoration(adapter.RecyclerDecoration())
         binding.recycler.layoutManager = object : LinearLayoutManager(context) {
             override fun canScrollHorizontally() = false
             override fun canScrollVertically() = true
@@ -87,21 +93,29 @@ class SoundFragment : Fragment(), SoundContract.View {
     }
 
     override fun setSound(url: String) {
-        (activity as MainActivity).audio?.stop()
+        val activity = activity as MainActivity
 
-        (activity as MainActivity).audio =
-            MediaPlayer.create(activity, Uri.parse(url))
-
-        (activity as MainActivity).audio?.start()
+        activity.audio.stop()
+        activity.audio = MediaPlayer.create(activity, Uri.parse(url))
+        activity.playAudio()
     }
 
     override fun setBackground(url: String) {
-        (activity as MainActivity).setBackground(url)
+        CoroutineScope(Dispatchers.Main).launch {
+            val bitmap = withContext(Dispatchers.IO) { ImageLoader.loadImage(url) }
+
+            val resources: Resources = resources
+            val drawable = BitmapDrawable(resources, bitmap)
+
+            binding.soundContainer.background = drawable
+        }
     }
 
     override fun toggleBottomSheetVisibility() {
-        if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) behavior.state =
-            BottomSheetBehavior.STATE_HIDDEN
-        else behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
+            behavior.state = BottomSheetBehavior.STATE_HIDDEN
+        } else {
+            behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }
     }
 }

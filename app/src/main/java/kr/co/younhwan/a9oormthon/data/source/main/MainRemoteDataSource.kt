@@ -90,13 +90,18 @@ object MainRemoteDataSource : MainSource {
                             for (i in 0 until data.length()) {
                                 val obj = data.getJSONObject(i)
 
+                                val url = obj.getString("jejuSoundUrl")
+                                val txt = obj.getString("jejuSoundTxt")
+                                val imgUrl = obj.getString("jejuSoundImgUrl")
+                                val thumbnailImgUrl = obj.getString("jejuSoundThumbnailImgUrl")
+
                                 list.add(
                                     soundItem(
-                                        obj.getString("jejuSoundImgUrl") ?: "",
-                                        obj.getString("jejuSoundTxt") ?: "",
-                                        obj.getString("jejuSoundNo") ?: "",
-                                        obj.getString("jejuSoundThumbnailImgUrl") ?: "",
-                                        obj.getString("jejuSoundUrl") ?: "",
+                                        jejuSoundNo = "1",
+                                        jejuSoundUrl = url,
+                                        jejuSoundMsg = txt,
+                                        jejuSoundImgUrl = imgUrl,
+                                        jejuSoundThumbnailImgUrl = thumbnailImgUrl
                                     )
                                 )
                             }

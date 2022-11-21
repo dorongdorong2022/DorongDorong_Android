@@ -1,5 +1,6 @@
 package kr.co.younhwan.a9oormthon.adapter
 
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewParent
@@ -35,6 +36,11 @@ class MainViewHolder(
 
         itemView.setOnClickListener {
             listenerFuncOfLocation?.invoke(item)
+        }
+
+        if(item.jejuSoundUrl.isBlank() || item.jejuSoundImgUrl.isBlank()){
+            itemView.isEnabled = false
+            itemImage.isEnabled = false
         }
     }
 }

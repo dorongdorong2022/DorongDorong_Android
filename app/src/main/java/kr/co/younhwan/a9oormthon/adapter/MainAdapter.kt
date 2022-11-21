@@ -1,6 +1,8 @@
 package kr.co.younhwan.a9oormthon.adapter
 
+import android.graphics.Rect
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -41,6 +43,22 @@ class MainAdapter :
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         itemList[position].let {
             holder.onBind(it)
+        }
+    }
+
+    inner class RecyclerDecoration : RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            super.getItemOffsets(outRect, view, parent, state)
+
+            val itemPosition = parent.getChildAdapterPosition(view)
+            val density = parent.resources.displayMetrics.density
+
+            outRect.bottom = (20 * density).toInt()
         }
     }
 }
