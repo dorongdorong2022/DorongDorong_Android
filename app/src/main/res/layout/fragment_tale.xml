@@ -35,8 +35,8 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="36dp">
+        android:layout_alignTop="@id/topContaier"
+        android:layout_alignParentBottom="true">
 
         <RelativeLayout
             android:id="@+id/standard_bottom_sheet"

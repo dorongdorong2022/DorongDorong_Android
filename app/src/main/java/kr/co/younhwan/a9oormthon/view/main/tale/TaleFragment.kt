@@ -83,13 +83,13 @@ class TaleFragment : Fragment(), TaleContract.View {
                     }
 
                     else ->{
-                        (activity as MainActivity).audio.start()
+                        (activity as MainActivity).audio?.start()
                     }
                 }
             }
 
         binding.mic.setOnClickListener {
-            (activity as MainActivity).audio.pause()
+            (activity as MainActivity).audio?.pause()
             childForResult.launch(Intent(activity, SelectActivity::class.java))
         }
 

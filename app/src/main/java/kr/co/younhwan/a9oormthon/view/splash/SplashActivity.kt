@@ -32,8 +32,8 @@ class SplashActivity :
         setContentView(binding.root)
 
         Handler().postDelayed(Runnable {
-            startMainAct()
-        }, 1500) //딜레이 타임 조절
+            presenter.getKey()
+        }, 1000) //딜레이 타임 조절
 
     }
 

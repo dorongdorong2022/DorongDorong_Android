@@ -54,14 +54,12 @@ class MainActivity :
     }
 
     // Audio
-    lateinit var audio: MediaPlayer
+    var audio: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
         // 오디오 선언 및 재생
         audio = MediaPlayer.create(this, R.raw.sound0)
@@ -80,7 +78,7 @@ class MainActivity :
         // 바텀 네비게이션 이벤트 설정
         binding.bottomNavigation.selectedItemId = R.id.option_sound
         binding.bottomNavigation.setOnItemSelectedListener {
-            audio.pause()
+            audio?.pause()
 
             when (it.itemId) {
                 R.id.option_sound -> {
@@ -106,12 +104,18 @@ class MainActivity :
                 R.id.option_voice -> {
                     // 프래그래먼트 변경
                     replace(R.id.fragmentContainerView, voiceFragment)
+
+                    // 오디오 변경
+                    audio = null
                     true
                 }
 
                 R.id.option_coaching -> {
                     // 프래그먼트 변경
                     replace(R.id.fragmentContainerView, coach1Fragment)
+
+                    // 오디오 변경
+                    audio = null
                     true
                 }
 
@@ -127,9 +131,12 @@ class MainActivity :
         else binding.fragmentContainerView.translationZ = 0f
 
 
-    override fun playAudio() =
-        if (audio.isPlaying) audio.pause()
-        else audio.start()
+    override fun playAudio() {
+        if (audio != null && audio?.isPlaying == true)
+            audio?.pause()
+        else
+            audio?.start()
+    }
 
     override fun setBackground(url: String) {
         CoroutineScope(Dispatchers.Main).launch {

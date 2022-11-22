@@ -113,7 +113,7 @@ class SoundFragment : Fragment(), SoundContract.View {
     override fun setSound(url: String) {
         val activity = activity as MainActivity
 
-        activity.audio.stop()
+        activity.audio?.stop()
         activity.audio = MediaPlayer.create(activity, Uri.parse(url))
         activity.playAudio()
     }
