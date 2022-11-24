@@ -37,10 +37,5 @@ class MainViewHolder(
         itemView.setOnClickListener {
             listenerFuncOfLocation?.invoke(item)
         }
-
-        if(item.jejuSoundUrl.isBlank() || item.jejuSoundImgUrl.isBlank()){
-            itemView.isEnabled = false
-            itemImage.isEnabled = false
-        }
     }
 }

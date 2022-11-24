@@ -1,6 +1,7 @@
 package kr.co.younhwan.a9oormthon.view.main.sound.presenter
 
 import android.util.Log
+import android.widget.Toast
 import kr.co.younhwan.a9oormthon.GlobalApplication
 import kr.co.younhwan.a9oormthon.adapter.contract.MainAdapterContract
 import kr.co.younhwan.a9oormthon.data.soundItem
@@ -16,9 +17,13 @@ class SoundPresenter(
 
     init {
         mainAdapterView.onClickFunOfLocation = {
-            view.toggleBottomSheetVisibility()
-            view.setSound(it.jejuSoundUrl)
-            view.setBackground(it.jejuSoundImgUrl)
+            if (it.jejuSoundUrl.isNotBlank() && it.jejuSoundUrl.isNotEmpty()) {
+                view.toggleBottomSheetVisibility()
+                view.setSound(it.jejuSoundUrl)
+                view.setBackground(it.jejuSoundImgUrl)
+            } else {
+                Toast.makeText(view.getAct(), "준비중입니다.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

@@ -138,4 +138,6 @@ class SoundFragment : Fragment(), SoundContract.View {
             binding.changeLocation.animate().alpha(0.0f)
         }
     }
+
+    override fun getAct(): MainActivity = activity as MainActivity
 }
