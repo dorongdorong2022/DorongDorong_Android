@@ -10,6 +10,8 @@ interface SoundContract {
 
         fun setBackground(url: String)
 
+        fun setVolumeImage(show: Boolean)
+
         fun toggleBottomSheetVisibility()
     }
 

@@ -7,19 +7,35 @@
     android:background="@drawable/main_image"
     android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/changeLocation"
-        style="@style/changeButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/topContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="62dp"
-        android:text="@string/change_sound_btn" />
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/changeLocation"
+            style="@style/changeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/change_sound_btn" />
+
+        <ImageView
+            android:id="@+id/volumeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            app:srcCompat="@drawable/selector_volume_image" />
+    </LinearLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/changeLocation"
+        android:layout_alignTop="@id/topContainer"
         android:layout_alignParentBottom="true">
 
         <RelativeLayout

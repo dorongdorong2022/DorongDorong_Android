@@ -61,6 +61,15 @@ class SoundFragment : Fragment(), SoundContract.View {
         // 데이터 요청
         presenter.getData()
 
+        // 전체 컨테이너 설정
+        binding.soundContainer.setOnClickListener {
+            // 사운드 토글
+            (activity as MainActivity).playAudio()
+
+            // 볼륨 이미지 토글
+            setVolumeImage(!binding.volumeImage.isSelected)
+        }
+
         // 리사이클러뷰 설정
         binding.recycler.adapter = adapter
         binding.recycler.addItemDecoration(adapter.RecyclerDecoration())
@@ -73,6 +82,9 @@ class SoundFragment : Fragment(), SoundContract.View {
         binding.changeLocation.setOnClickListener {
             toggleBottomSheetVisibility()
         }
+
+        // 볼륨 이미지 설정
+        setVolumeImage(true)
 
         // 바텀 시트 설정
         behavior = BottomSheetBehavior.from(binding.standardBottomSheet)
@@ -129,13 +141,17 @@ class SoundFragment : Fragment(), SoundContract.View {
         }
     }
 
+    override fun setVolumeImage(show: Boolean) {
+        binding.volumeImage.isSelected = show
+    }
+
     override fun toggleBottomSheetVisibility() {
         if (behavior.state != BottomSheetBehavior.STATE_HIDDEN) {
             behavior.state = BottomSheetBehavior.STATE_HIDDEN
-            binding.changeLocation.animate().alpha(1.0f)
+            binding.topContainer.animate().alpha(1.0f)
         } else {
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
-            binding.changeLocation.animate().alpha(0.0f)
+            binding.topContainer.animate().alpha(0.0f)
         }
     }
 
