@@ -8,10 +8,10 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbar"
+        style="@style/MyToolbarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/MyToolbarStyle"
-        >
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/voiceToolbar"
@@ -19,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="52dp"
+            android:background="@color/bg_black"
+            android:elevation="0dp"
             app:navigationIcon="@drawable/back" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -58,4 +60,14 @@
         <!-- Scrollable content -->
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_black"
+        android:elevation="0dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading" />
 </RelativeLayout>

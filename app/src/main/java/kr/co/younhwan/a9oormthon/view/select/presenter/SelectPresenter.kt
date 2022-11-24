@@ -57,11 +57,13 @@ class SelectPresenter(
 
                         voiceAdapterModel.addItems(list)
                         voiceAdapterView.notifyAdapter()
+                        view.setLoadingView(false)
                     }
                 }
             )
         } else {
             // 토큰이 존재하지 않을 때
+            view.setLoadingView(false)
         }
     }
 }

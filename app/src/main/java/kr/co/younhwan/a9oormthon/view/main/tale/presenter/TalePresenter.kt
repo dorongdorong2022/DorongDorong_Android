@@ -1,6 +1,7 @@
 package kr.co.younhwan.a9oormthon.view.main.tale.presenter
 
 import android.util.Log
+import android.widget.Toast
 import kr.co.younhwan.a9oormthon.GlobalApplication
 import kr.co.younhwan.a9oormthon.adapter.contract.MainAdapterContract
 import kr.co.younhwan.a9oormthon.data.soundItem
@@ -14,6 +15,14 @@ class TalePresenter(
     private val mainAdapterView: MainAdapterContract.View
 ) : TaleContract.Model {
     private val token = GlobalApplication.prefs.getString("token", "no token")
+
+    init {
+        mainAdapterView.onClickFunOfLocation = {
+            if (it.jejuSoundUrl.isBlank() || it.jejuSoundUrl.isEmpty()) {
+                Toast.makeText(view.getAct(), "준비중입니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     override fun getDate() {
         if (token != "no token") {

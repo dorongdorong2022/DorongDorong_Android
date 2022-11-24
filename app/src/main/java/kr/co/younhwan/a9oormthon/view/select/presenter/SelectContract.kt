@@ -7,6 +7,8 @@ interface SelectContract {
         fun finishAct()
 
         fun setAudio(url: String)
+
+        fun setLoadingView(shown: Boolean)
     }
 
     interface Model {

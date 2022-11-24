@@ -147,6 +147,8 @@ class TaleFragment : Fragment(), TaleContract.View {
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
+    override fun getAct(): MainActivity = activity as MainActivity
+
     override fun setVolumeImage(show: Boolean) {
         binding.taleVolumeImage.isSelected = show
     }
