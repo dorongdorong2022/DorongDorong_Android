@@ -4,9 +4,9 @@ interface SelectContract {
     interface View {
         fun startAudio()
 
-        fun fin()
+        fun finishAct()
 
-        fun initaudio()
+        fun setAudio(url: String)
     }
 
     interface Model {

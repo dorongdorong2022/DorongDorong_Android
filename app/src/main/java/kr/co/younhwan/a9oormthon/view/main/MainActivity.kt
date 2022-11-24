@@ -62,7 +62,7 @@ class MainActivity :
         setContentView(binding.root)
 
         // 오디오 선언 및 재생
-        audio = MediaPlayer.create(this, R.raw.sound0)
+        audio = MediaPlayer.create(this, R.raw.main_sound)
         playAudio()
 
         // 전체 컨테이너 이벤트 설정
@@ -78,7 +78,7 @@ class MainActivity :
         // 바텀 네비게이션 이벤트 설정
         binding.bottomNavigation.selectedItemId = R.id.option_sound
         binding.bottomNavigation.setOnItemSelectedListener {
-            audio?.pause()
+            audio?.stop()
 
             when (it.itemId) {
                 R.id.option_sound -> {
@@ -88,6 +88,7 @@ class MainActivity :
                     // 오디오 변경 재생
                     audio = MediaPlayer.create(this, R.raw.main_sound)
                     playAudio()
+
                     true
                 }
 
@@ -98,6 +99,7 @@ class MainActivity :
                     // 오디오 변경 및 재생
                     audio = MediaPlayer.create(this, R.raw.tale_sound)
                     playAudio()
+
                     true
                 }
 
@@ -105,8 +107,6 @@ class MainActivity :
                     // 프래그래먼트 변경
                     replace(R.id.fragmentContainerView, voiceFragment)
 
-                    // 오디오 변경
-                    audio = null
                     true
                 }
 
@@ -114,8 +114,6 @@ class MainActivity :
                     // 프래그먼트 변경
                     replace(R.id.fragmentContainerView, coach1Fragment)
 
-                    // 오디오 변경
-                    audio = null
                     true
                 }
 

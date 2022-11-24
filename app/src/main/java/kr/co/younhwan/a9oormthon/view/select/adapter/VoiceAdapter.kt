@@ -18,8 +18,7 @@ import kr.co.younhwan.a9oormthon.view.select.adapter.contract.VoiceAdapterContra
 class VoiceAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     VoiceAdapterContract.Model,
-    VoiceAdapterContract.View
-{
+    VoiceAdapterContract.View {
     // 리사이클러뷰 아이템
     private var itemList: ArrayList<voiceItem> = ArrayList()
 
@@ -28,6 +27,7 @@ class VoiceAdapter :
 
     override var onClickFunOfBtn2: ((Unit) -> Unit)? = null
 
+    // 메서드 오버라이딩
     override fun getItemCount() = itemList.size
 
     override fun notifyAdapter() = notifyDataSetChanged()
@@ -43,33 +43,20 @@ class VoiceAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
-        when (viewType) {
-            1 -> {
-                val binding = RecyclerVoiceItemBinding.inflate(inflater, parent, false)
-                return VoiceViewHolder(
-                    parent = parent,
-                    binding = binding,
-                    listenerFuncOfBtn = onClickFunOfBtn
-                )
-            }
-
-            2 -> {
-                val binding = RecyclerEmptyVoiceItemBinding.inflate(inflater, parent, false)
-                return VoiceEmptyViewHolder(
-                    parent = parent,
-                    binding = binding,
-                    listenerFuncOfBtn = onClickFunOfBtn2
-                )
-            }
-
-            else -> {
-                val binding = RecyclerVoiceItemBinding.inflate(inflater, parent, false)
-                return VoiceViewHolder(
-                    parent = parent,
-                    binding = binding,
-                    listenerFuncOfBtn = onClickFunOfBtn
-                )
-            }
+        return if (viewType == 2) {
+            val binding = RecyclerEmptyVoiceItemBinding.inflate(inflater, parent, false)
+            VoiceEmptyViewHolder(
+                parent = parent,
+                binding = binding,
+                listenerFuncOfBtn = onClickFunOfBtn2
+            )
+        } else {
+            val binding = RecyclerVoiceItemBinding.inflate(inflater, parent, false)
+            VoiceViewHolder(
+                parent = parent,
+                binding = binding,
+                listenerFuncOfBtn = onClickFunOfBtn
+            )
         }
     }
 

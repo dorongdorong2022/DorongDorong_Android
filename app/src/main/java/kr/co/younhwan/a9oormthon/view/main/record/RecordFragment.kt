@@ -1,17 +1,12 @@
 package kr.co.younhwan.a9oormthon.view.main.record
 
-import android.Manifest
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kr.co.younhwan.a9oormthon.R
@@ -22,7 +17,6 @@ import kr.co.younhwan.a9oormthon.view.main.record.adapter.RecordAdapter
 import kr.co.younhwan.a9oormthon.view.main.record.presenter.RecordContract
 import kr.co.younhwan.a9oormthon.view.main.record.presenter.RecordPresenter
 import kr.co.younhwan.a9oormthon.view.main.voice.VoiceFragment
-
 
 class RecordFragment : Fragment(), RecordContract.View {
     // binding
@@ -115,9 +109,6 @@ class RecordFragment : Fragment(), RecordContract.View {
 
                     val dlg = MyDialog()
                     dlg.show((activity as MainActivity).supportFragmentManager, "CustomDialog")
-
-
-
                 }
             }
         }

@@ -18,8 +18,8 @@
             style="@style/MyToolbarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/back"
-            />
+            android:layout_marginTop="52dp"
+            app:navigationIcon="@drawable/back" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
@@ -30,8 +30,8 @@
         android:background="@color/bg_black"
         android:orientation="horizontal"
         android:paddingStart="24dp"
-        android:paddingTop="29dp"
-        android:paddingBottom="40dp">
+        android:paddingTop="27dp"
+        android:paddingBottom="38dp">
 
         <TextView
             android:id="@+id/textView"

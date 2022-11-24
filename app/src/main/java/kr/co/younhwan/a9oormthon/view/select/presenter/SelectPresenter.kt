@@ -1,10 +1,7 @@
 package kr.co.younhwan.a9oormthon.view.select.presenter
 
 import android.util.Log
-import com.airbnb.lottie.LottieAnimationView
 import kr.co.younhwan.a9oormthon.GlobalApplication
-import kr.co.younhwan.a9oormthon.adapter.contract.MainAdapterContract
-import kr.co.younhwan.a9oormthon.data.item
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
 import kr.co.younhwan.a9oormthon.data.source.main.MainSource
 import kr.co.younhwan.a9oormthon.data.voiceItem
@@ -16,50 +13,55 @@ class SelectPresenter(
     private val voiceAdapterModel: VoiceAdapterContract.Model,
     private val voiceAdapterView: VoiceAdapterContract.View
 ) : SelectContract.Model {
-    val token = GlobalApplication.prefs.getString("token", "no token")
+    private val token = GlobalApplication.prefs.getString("token", "no token")
 
     init {
         voiceAdapterView.onClickFunOfBtn = {
-            onClickListenerOfBtn(it)
+            if (it.isAnimating){
+                it.pauseAnimation()
+            }else{
+                it.playAnimation()
+            }
+            view.startAudio()
         }
 
         voiceAdapterView.onClickFunOfBtn2 = {
-            onClickListenerOfBtn2()
+            view.finishAct()
         }
-
-        view.initaudio()
-    }
-
-    private fun onClickListenerOfBtn(view2: LottieAnimationView) {
-        if (view2.isAnimating){
-            view2.pauseAnimation()
-        }else{
-            view2.playAnimation()
-        }
-        view.startAudio()
-    }
-
-    private fun onClickListenerOfBtn2() {
-        view.fin()
     }
 
     override fun getData() {
-        mainData.read(
-            token,
-            object : MainSource.ReadCallback {
-                override fun onRead(list: ArrayList<voiceItem>) {
-                    list.add(voiceItem(
-                        id = 0,
-                        name = "",
-                        selected = true,
-                        audioFile = "",
-                        type = 2
-                    ))
+        if(token != "no token"){
+            // 토큰이 존재할 때
+            mainData.read(
+                token,
+                object : MainSource.ReadCallback {
+                    override fun onRead(list: ArrayList<voiceItem>) {
+                        // 기본 오디오 셋팅
+                        for(item in list){
+                            if(item.selected){
+                                view.setAudio(item.audioFile)
+                                Log.d("temp", item.audioFile)
+                                break
+                            }
+                        }
 
-                    voiceAdapterModel.addItems(list)
-                    voiceAdapterView.notifyAdapter()
+                        // 음성 추가를 위한 리사이클러뷰 아이템을 추가
+                        list.add(voiceItem(
+                            id = 0,
+                            name = "",
+                            selected = true,
+                            audioFile = "",
+                            type = 2
+                        ))
+
+                        voiceAdapterModel.addItems(list)
+                        voiceAdapterView.notifyAdapter()
+                    }
                 }
-            }
-        )
+            )
+        } else {
+            // 토큰이 존재하지 않을 때
+        }
     }
 }

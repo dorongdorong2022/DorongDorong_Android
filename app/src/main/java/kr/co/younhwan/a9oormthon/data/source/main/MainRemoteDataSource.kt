@@ -185,8 +185,6 @@ object MainRemoteDataSource : MainSource {
 
                             val data = JSONArray(json["jejuStoryVoiceList"].toString())
 
-                            Log.d("temp", data.toString())
-
                             for (i in 0 until data.length()) {
                                 val obj = data.getJSONObject(i)
 
