@@ -65,6 +65,18 @@ class TaleFragment : Fragment(), TaleContract.View {
         // 데이터 요청
         presenter.getDate()
 
+        // 전체 컨테이너 설정
+        binding.taleContainer.setOnClickListener {
+            // 사운드 토글
+            (activity as MainActivity).playAudio()
+
+            // 볼륨 이미지 토글
+            setVolumeImage(!binding.taleVolumeImage.isSelected)
+        }
+
+        // 볼륨 이미지 설정
+        setVolumeImage(true)
+
         // 리사이클러뷰 설정
         binding.recycler.adapter = adapter
         binding.recycler.addItemDecoration(adapter.RecyclerDecoration())
@@ -84,6 +96,7 @@ class TaleFragment : Fragment(), TaleContract.View {
 
                     else ->{
                         (activity as MainActivity).audio?.start()
+                        setVolumeImage(true)
                     }
                 }
             }
@@ -132,6 +145,10 @@ class TaleFragment : Fragment(), TaleContract.View {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    override fun setVolumeImage(show: Boolean) {
+        binding.taleVolumeImage.isSelected = show
     }
 
     override fun toggleBottomSheetVisibility() {

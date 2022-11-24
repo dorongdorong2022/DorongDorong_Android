@@ -65,11 +65,6 @@ class MainActivity :
         audio = MediaPlayer.create(this, R.raw.main_sound)
         playAudio()
 
-        // 전체 컨테이너 이벤트 설정
-//        binding.fragmentContainerView.setOnClickListener {
-//            playAudio()
-//        }
-
         // 초기 프래그먼트 설정
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, soundFragment)
