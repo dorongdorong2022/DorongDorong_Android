@@ -1,9 +1,11 @@
 package kr.co.younhwan.a9oormthon.view.main.voice
 
+import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.databinding.FragmentTaleBinding
@@ -44,6 +46,12 @@ class VoiceFragment : Fragment(), VoiceContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 권한 요청
+        val permissions =
+            arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        ActivityCompat.requestPermissions(activity as MainActivity, permissions, 0)
+
+        // 버튼 이벤트
         binding.containedButton.setOnClickListener {
             (activity as MainActivity).replace(R.id.fragmentContainerView, recordFragment)
         }

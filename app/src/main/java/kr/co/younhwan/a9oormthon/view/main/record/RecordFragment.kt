@@ -67,10 +67,6 @@ class RecordFragment : Fragment(), RecordContract.View {
         val output =
             "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}" + "/test.mp4"
 
-        val permissions =
-            arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        ActivityCompat.requestPermissions(activity as MainActivity, permissions, 0)
-
         binding.recycler.adapter = adapter
         binding.recycler.layoutManager = object : LinearLayoutManager(context) {
             override fun canScrollHorizontally() = false

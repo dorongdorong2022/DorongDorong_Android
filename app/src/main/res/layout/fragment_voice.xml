@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="103dp"
         android:fontFamily="@font/pretendard_bold"
         android:text="보이스를 등록하고 아이와 교감해보세요"
         android:textColor="@color/white"
@@ -177,6 +177,6 @@
         android:layout_height="76dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="78dp"
         android:text="녹음 시작하기" />
 </RelativeLayout>
