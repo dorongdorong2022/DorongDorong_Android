@@ -5,7 +5,6 @@ import android.content.res.Resources
 import android.graphics.drawable.BitmapDrawable
 import android.media.MediaPlayer
 import android.net.Uri
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.*
 import androidx.activity.OnBackPressedCallback
@@ -65,7 +64,7 @@ class SoundFragment : Fragment(), SoundContract.View {
         // 전체 컨테이너 설정
         binding.soundContainer.setOnClickListener {
             // 사운드 토글
-            (activity as MainActivity).playAudio()
+            (activity as MainActivity).toggleAudio()
 
             // 볼륨 이미지 토글
             setVolumeImage(!binding.volumeImage.isSelected)
@@ -126,8 +125,8 @@ class SoundFragment : Fragment(), SoundContract.View {
     override fun setSound(url: String) {
         val activity = activity as MainActivity
 
-        activity.audio?.stop()
-        activity.audio = MediaPlayer.create(activity, Uri.parse(url))
+        activity.stopAudio()
+        activity.setAudio(url, null)
         activity.playAudio()
     }
 

@@ -1,16 +1,12 @@
 package kr.co.younhwan.a9oormthon.view.main
 
 import android.content.res.Resources
-import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.media.MediaPlayer
-import android.os.Build
+import android.net.Uri
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
-import android.window.SplashScreen
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import kotlinx.coroutines.*
 import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
@@ -61,8 +57,8 @@ class MainActivity :
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 오디오 선언 및 재생
-        audio = MediaPlayer.create(this, R.raw.main_sound)
+        // (기본) 오디오 선언 및 재생
+        setAudio(null, R.raw.main_sound)
         playAudio()
 
         // 초기 프래그먼트 설정
@@ -81,7 +77,7 @@ class MainActivity :
                     replace(R.id.fragmentContainerView, soundFragment)
 
                     // 오디오 변경 재생
-                    audio = MediaPlayer.create(this, R.raw.main_sound)
+                    setAudio(null, R.raw.main_sound)
                     playAudio()
 
                     true
@@ -92,7 +88,7 @@ class MainActivity :
                     replace(R.id.fragmentContainerView, taleFragment)
 
                     // 오디오 변경 및 재생
-                    audio = MediaPlayer.create(this, R.raw.tale_sound)
+                    setAudio(null, R.raw.tale_sound)
                     playAudio()
 
                     true
@@ -123,14 +119,6 @@ class MainActivity :
         if (shown) binding.fragmentContainerView.translationZ = 90f
         else binding.fragmentContainerView.translationZ = 0f
 
-
-    override fun playAudio() {
-        if (audio != null && audio?.isPlaying == true)
-            audio?.pause()
-        else
-            audio?.start()
-    }
-
     override fun setBackground(url: String) {
         CoroutineScope(Dispatchers.Main).launch {
             val bitmap = withContext(Dispatchers.IO) {
@@ -146,5 +134,34 @@ class MainActivity :
 
     override fun selectedIcon() {
         binding.bottomNavigation.selectedItemId = R.id.option_voice
+    }
+
+    override fun toggleAudio() {
+        if (audio != null && audio?.isPlaying == true)
+            audio?.pause()
+        else
+            audio?.start()
+    }
+
+    override fun playAudio() {
+        audio?.start()
+    }
+
+    override fun stopAudio() {
+        audio?.stop()
+    }
+
+    override fun pauseAudio() {
+        audio?.pause()
+    }
+
+    override fun setAudio(url: String?, filePath: Int?) {
+        audio = if (url == null && filePath != null) {
+            MediaPlayer.create(this, filePath)
+        } else if (url != null && filePath == null) {
+            MediaPlayer.create(this, Uri.parse(url))
+        } else {
+            MediaPlayer.create(this, R.raw.main_sound)
+        }
     }
 }

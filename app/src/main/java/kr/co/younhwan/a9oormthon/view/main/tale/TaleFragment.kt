@@ -69,7 +69,7 @@ class TaleFragment : Fragment(), TaleContract.View {
         // 전체 컨테이너 설정
         binding.taleContainer.setOnClickListener {
             // 사운드 토글
-            (activity as MainActivity).playAudio()
+            (activity as MainActivity).toggleAudio()
 
             // 볼륨 이미지 토글
             setVolumeImage(!binding.taleVolumeImage.isSelected)
