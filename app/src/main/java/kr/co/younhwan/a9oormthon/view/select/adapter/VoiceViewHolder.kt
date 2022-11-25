@@ -1,6 +1,7 @@
 package kr.co.younhwan.a9oormthon.view.select.adapter
 
 import android.animation.Animator
+import android.media.MediaPlayer
 import android.view.ViewParent
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -25,6 +26,10 @@ class VoiceViewHolder(
         binding.volumeEqualizer
     }
 
+    private val check by lazy {
+        binding.checkBox
+    }
+
     fun onBind(voiceItem: voiceItem) {
         name.text = voiceItem.name
 
@@ -33,22 +38,24 @@ class VoiceViewHolder(
             listenerFuncOfBtn?.invoke(equalizer)
         }
 
-        equalizer.addAnimatorListener(object : Animator.AnimatorListener{
-            override fun onAnimationCancel(p0: Animator?) {
-                btn.isSelected = false
-            }
+        check.isChecked = voiceItem.selected
+
+        equalizer.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(p0: Animator?) {}
 
             override fun onAnimationEnd(p0: Animator?) {
                 btn.isSelected = false
             }
 
-            override fun onAnimationRepeat(p0: Animator?) {
-            }
-
             override fun onAnimationStart(p0: Animator?) {
                 btn.isSelected = true
             }
+
+            override fun onAnimationCancel(p0: Animator?) {
+                btn.isSelected = false
+            }
         })
+
     }
 }
 

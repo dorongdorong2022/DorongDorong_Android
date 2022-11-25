@@ -29,7 +29,7 @@
             android:background="@android:color/transparent"
             android:button="@drawable/selector_check_box"
             android:buttonTint="#FFFFFF"
-            android:checked="true"
+            android:checked="false"
             android:minWidth="0dp"
             android:minHeight="0dp" />
     </RelativeLayout>
@@ -53,6 +53,7 @@
             android:layout_alignBottom="@id/playBtn"
             android:layout_toEndOf="@id/playBtn"
             android:baselineAlignBottom="false"
+            app:lottie_speed="0.5"
             app:lottie_rawRes="@raw/progress3" />
     </RelativeLayout>
 </LinearLayout>

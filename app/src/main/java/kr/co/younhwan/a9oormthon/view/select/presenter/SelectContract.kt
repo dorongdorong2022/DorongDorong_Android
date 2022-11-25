@@ -9,6 +9,8 @@ interface SelectContract {
         fun setAudio(url: String)
 
         fun setLoadingView(shown: Boolean)
+
+        fun getAudioDuration() : Int
     }
 
     interface Model {

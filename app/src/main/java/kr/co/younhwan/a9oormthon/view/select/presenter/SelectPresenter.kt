@@ -22,6 +22,7 @@ class SelectPresenter(
             }else{
                 it.playAnimation()
             }
+            it.speed = it.duration.toFloat() / view.getAudioDuration()
             view.startAudio()
         }
 
@@ -37,11 +38,12 @@ class SelectPresenter(
                 token,
                 object : MainSource.ReadCallback {
                     override fun onRead(list: ArrayList<voiceItem>) {
+                        Log.d("temp", list.toString())
+
                         // 기본 오디오 셋팅
                         for(item in list){
                             if(item.selected){
                                 view.setAudio(item.audioFile)
-                                Log.d("temp", item.audioFile)
                                 break
                             }
                         }

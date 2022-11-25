@@ -72,6 +72,10 @@ class SelectActivity :
         }
     }
 
+    override fun getAudioDuration(): Int {
+        return audio?.duration ?: 0
+    }
+
     override fun finishAct() {
         setResult(RESULT_OK)
         finish()
