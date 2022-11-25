@@ -9,6 +9,8 @@ interface TaleContract {
         fun toggleBottomSheetVisibility()
 
         fun setVolumeImage(show: Boolean)
+
+        fun setSnackMessage(msg: String)
     }
 
     interface Model {

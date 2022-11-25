@@ -6,7 +6,7 @@ import kr.co.younhwan.a9oormthon.data.voiceItem
 
 interface VoiceAdapterContract {
     interface View {
-        var onClickFunOfBtn: ((LottieAnimationView) -> Unit)?
+        var onClickFunOfBtn: ((voiceItem, LottieAnimationView) -> Unit)?
 
         var onClickFunOfBtn2: ((Unit) -> Unit)?
 

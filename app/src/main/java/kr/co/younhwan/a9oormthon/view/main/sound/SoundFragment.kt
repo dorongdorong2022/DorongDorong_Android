@@ -12,6 +12,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -156,4 +157,6 @@ class SoundFragment : Fragment(), SoundContract.View {
     }
 
     override fun getAct(): MainActivity = activity as MainActivity
+
+    override fun setSnackMessage(msg: String) = Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
 }

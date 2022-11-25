@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.Snackbar
 import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.adapter.MainAdapter
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
@@ -162,4 +163,6 @@ class TaleFragment : Fragment(), TaleContract.View {
             binding.topContaier.animate().alpha(0.0f)
         }
     }
+
+    override fun setSnackMessage(msg: String) = Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
 }

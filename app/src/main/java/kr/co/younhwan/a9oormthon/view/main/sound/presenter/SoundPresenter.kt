@@ -22,7 +22,7 @@ class SoundPresenter(
                 view.setBackground(it.jejuSoundImgUrl)
                 view.setVolumeImage(true)
             } else {
-                Toast.makeText(view.getAct(), "준비중입니다.", Toast.LENGTH_SHORT).show()
+                view.setSnackMessage("준비중입니다.")
             }
         }
     }

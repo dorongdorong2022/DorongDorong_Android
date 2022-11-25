@@ -11,7 +11,7 @@ import kr.co.younhwan.a9oormthon.databinding.RecyclerVoiceItemBinding
 class VoiceViewHolder(
     private val parent: ViewParent,
     binding: RecyclerVoiceItemBinding,
-    private val listenerFuncOfBtn: ((LottieAnimationView) -> Unit)?
+    private val listenerFuncOfBtn: ((voiceItem, LottieAnimationView) -> Unit)?
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private val name by lazy {
@@ -35,7 +35,7 @@ class VoiceViewHolder(
 
         btn.setOnClickListener {
             it.isSelected = !it.isSelected
-            listenerFuncOfBtn?.invoke(equalizer)
+            listenerFuncOfBtn?.invoke(voiceItem, equalizer)
         }
 
         check.isChecked = voiceItem.selected

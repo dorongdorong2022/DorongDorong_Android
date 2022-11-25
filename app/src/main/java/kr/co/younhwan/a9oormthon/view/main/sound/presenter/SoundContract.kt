@@ -13,6 +13,8 @@ interface SoundContract {
         fun setVolumeImage(show: Boolean)
 
         fun toggleBottomSheetVisibility()
+
+        fun setSnackMessage(msg: String)
     }
 
     interface Model {

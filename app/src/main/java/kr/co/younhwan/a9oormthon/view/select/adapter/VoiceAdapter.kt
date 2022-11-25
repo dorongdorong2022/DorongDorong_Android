@@ -23,7 +23,7 @@ class VoiceAdapter :
     private var itemList: ArrayList<voiceItem> = ArrayList()
 
     // 이벤트 리스너
-    override var onClickFunOfBtn: ((LottieAnimationView) -> Unit)? = null
+    override var onClickFunOfBtn: ((voiceItem, LottieAnimationView) -> Unit)? = null
 
     override var onClickFunOfBtn2: ((Unit) -> Unit)? = null
 

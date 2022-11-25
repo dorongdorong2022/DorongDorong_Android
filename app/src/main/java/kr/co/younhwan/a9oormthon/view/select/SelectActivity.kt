@@ -3,9 +3,12 @@ package kr.co.younhwan.a9oormthon.view.select
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
 import kr.co.younhwan.a9oormthon.databinding.ActivitySelectBinding
@@ -64,12 +67,12 @@ class SelectActivity :
     }
 
     override fun startAudio() {
-        if(audio?.isPlaying == true){
-            audio?.pause()
-        } else {
-            audio?.seekTo(0)
-            audio?.start()
-        }
+        audio?.seekTo(0)
+        audio?.start()
+    }
+
+    override fun stopAudio() {
+        audio?.stop()
     }
 
     override fun getAudioDuration(): Int {
@@ -98,5 +101,9 @@ class SelectActivity :
             binding.loading.visibility = View.GONE
             binding.loading.pauseAnimation()
         }
+    }
+
+    override fun isPlayingAudio(): Boolean {
+        return audio?.isPlaying ?: false
     }
 }

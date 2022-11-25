@@ -19,7 +19,7 @@ class TalePresenter(
     init {
         mainAdapterView.onClickFunOfLocation = {
             if (it.jejuSoundUrl.isBlank() || it.jejuSoundUrl.isEmpty()) {
-                Toast.makeText(view.getAct(), "준비중입니다.", Toast.LENGTH_SHORT).show()
+                view.setSnackMessage("준비중입니다.")
             }
         }
     }
