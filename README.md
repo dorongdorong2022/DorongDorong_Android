@@ -97,7 +97,7 @@
     b. [장소변경]을 통해 다른 장소의 소리를 들을 수 있어요.
     c. 화면을 클릭하면 손쉽게 소리를 끄고 켤 수 있어요.
 
-<a href="https://youtu.be/gXm6Pbr_9Ps">
+<a href="https://www.youtube.com/shorts/gjnTC0bUzHE">
     <img src="https://user-images.githubusercontent.com/78298663/204272158-7c737928-b976-49cf-9436-187f28d025ef.gif" height="500px"/>
 </a>
 <span>👈🏻 클릭하면 유튜브를 통해 소리와 함께 보실 수 있어요!</span>
@@ -109,7 +109,7 @@
     a. [설화변경]을 통해 다양한 제주설화를 들을 수 있어요!
     b. 목소리를 선택해 아기에게 다양한 목소리로 설화를 들려주세요.
 
-<a href="https://youtu.be/gXm6Pbr_9Ps">
+<a href="https://youtube.com/shorts/M60sWpo0qgI">
     <img src="https://user-images.githubusercontent.com/78298663/204277636-091de078-31a1-45a9-867a-c7d061fb6923.gif" height="500px"/>
 </a>
 <span>👈🏻 클릭하면 유튜브를 통해 소리와 함께 보실 수 있어요!</span>
