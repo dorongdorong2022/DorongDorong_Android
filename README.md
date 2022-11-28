@@ -133,4 +133,11 @@
 
 <img src="https://user-images.githubusercontent.com/78298663/204344936-f7268cf5-47ba-4c4f-b391-d0f087ba297a.gif" height="500px"/>
 
+<br>
 
+## ⚙️ 개발 환경
+
+- Android Studio Dolphin | 2021.3.1 Patch 1
+- minSdk 26
+- targetSdk 32
+- 가로모드, 다크모드 미지원
