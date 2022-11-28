@@ -66,7 +66,7 @@
 
 ## Project
 
-<div style="background-color:#242424; padding:10px">
+<div style="background-color:#dddddd; padding:10px" !important>
     <span style="color:#7F4FA2">도롱도롱</span>은 아이가 곤히 잠자는 소리를 연상시키는 말입니다. <br/>
     기존 고전적인 교육방식인 퀴즈와 강의에서 벗어나 오로지 <span style="font-weight : bold">‘소리’</span>만을 이용해 태아를 교육하는 서비스입니다
 </div>
