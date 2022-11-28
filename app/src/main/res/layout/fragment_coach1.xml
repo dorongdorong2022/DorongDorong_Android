@@ -123,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="172dp"
                 android:layout_marginBottom="70dp"
-                android:background="@drawable/coach_4"
+                android:background="@drawable/tmp2222"
                 android:orientation="vertical">
 
                 <TextView

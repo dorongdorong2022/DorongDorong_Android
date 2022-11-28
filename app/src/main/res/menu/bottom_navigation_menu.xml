@@ -1,11 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:id="@+id/option_voice"
+        android:id="@+id/option_sound"
         android:enabled="true"
-        android:icon="@drawable/mic_icon"
-        android:title="보이스"
+        android:icon="@drawable/eco_1"
+        android:title="제주소리"
         app:showAsAction="withText" />
     <item
         android:id="@+id/option_tale"
@@ -15,10 +14,10 @@
         android:title="제주설화"
         app:showAsAction="withText" />
     <item
-        android:id="@+id/option_sound"
+        android:id="@+id/option_voice"
         android:enabled="true"
-        android:icon="@drawable/eco_1"
-        android:title="제주소리"
+        android:icon="@drawable/mic_icon"
+        android:title="보이스"
         app:showAsAction="withText" />
     <item
         android:id="@+id/option_coaching"

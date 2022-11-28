@@ -47,9 +47,7 @@ class VoiceFragment : Fragment(), VoiceContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         // 권한 요청
-        val permissions =
-            arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        ActivityCompat.requestPermissions(activity as MainActivity, permissions, 0)
+
 
         // 버튼 이벤트
         binding.containedButton.setOnClickListener {

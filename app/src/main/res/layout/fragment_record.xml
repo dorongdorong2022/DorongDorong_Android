@@ -27,14 +27,23 @@
         android:textSize="20sp" />
 
     <LinearLayout
+        android:id="@+id/textArea"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_below="@id/recordTitle"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/layout_bg_3"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/temp" />
 
         <TextView
             android:id="@+id/textView2"
@@ -47,7 +56,8 @@
             android:text="햇살도 둥글둥글하게 뭉치는 맑은 날"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textView3"
@@ -57,7 +67,8 @@
             android:layout_marginBottom="14dp"
             android:fontFamily="@font/pretendard_medium"
             android:text="꽃초롱 불 밝히듯 눈을 밝힐까"
-            android:textColor="@color/gray_2" />
+            android:textColor="@color/gray_2"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textView4"
@@ -67,7 +78,8 @@
             android:layout_marginBottom="14dp"
             android:fontFamily="@font/pretendard_medium"
             android:text="흙에서 자란 내마음 파아란 하늘빛"
-            android:textColor="@color/gray_2" />
+            android:textColor="@color/gray_2"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textView5"
@@ -77,7 +89,8 @@
             android:layout_marginBottom="14dp"
             android:fontFamily="@font/pretendard_medium"
             android:text="하늘을 우러러 한 점 부끄럼 없기를"
-            android:textColor="@color/gray_2" />
+            android:textColor="@color/gray_2"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textView6"
@@ -87,7 +100,8 @@
             android:layout_marginBottom="49dp"
             android:fontFamily="@font/pretendard_medium"
             android:text="많고 많은 사람 중에 그대 한 사람"
-            android:textColor="@color/gray_2" />
+            android:textColor="@color/gray_2"
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
@@ -97,6 +111,25 @@
             android:paddingBottom="50dp"
             android:visibility="gone" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/textArea"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/layout_bg_2">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/equa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tmp2" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/recordBtn"

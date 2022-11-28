@@ -33,7 +33,7 @@ class SplashActivity :
 
         Handler().postDelayed(Runnable {
             presenter.getKey()
-        }, 1000) //딜레이 타임 조절
+        }, 2000) //딜레이 타임 조절
 
     }
 

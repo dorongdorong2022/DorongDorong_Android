@@ -1,5 +1,6 @@
 package kr.co.younhwan.a9oormthon.view.main.record
 
+import android.Manifest
 import android.graphics.BitmapFactory
 import android.media.MediaRecorder
 import android.os.Bundle
@@ -7,8 +8,10 @@ import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.databinding.FragmentRecordBinding
 import kr.co.younhwan.a9oormthon.util.replace
@@ -58,6 +61,10 @@ class RecordFragment : Fragment(), RecordContract.View {
 
         presenter.getData()
 
+        val permissions =
+            arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+        ActivityCompat.requestPermissions(activity as MainActivity, permissions, 0)
+
         val output =
             "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)}" + "/test.mp4"
 
@@ -83,15 +90,9 @@ class RecordFragment : Fragment(), RecordContract.View {
                             R.drawable.record_2
                         )
                     )
-                    mediaRecorder = MediaRecorder()
 
-                    mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
-                    mediaRecorder?.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-                    mediaRecorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-                    mediaRecorder?.setOutputFile(output)
-
-                    mediaRecorder?.prepare()
-                    mediaRecorder?.start()
+                    Glide.with(this).load(R.raw.temp).fitCenter().into(binding.imageView6)
+                    binding.equa.playAnimation()
                 }
 
                 "recording" -> {
@@ -103,9 +104,8 @@ class RecordFragment : Fragment(), RecordContract.View {
                         )
                     )
 
-                    mediaRecorder?.stop()
-                    mediaRecorder?.release()
-                    mediaRecorder = null
+                    Glide.with(this).load(R.drawable.tmp3333333).fitCenter().into(binding.imageView6)
+                    binding.equa.pauseAnimation()
 
                     val dlg = MyDialog()
                     dlg.show((activity as MainActivity).supportFragmentManager, "CustomDialog")

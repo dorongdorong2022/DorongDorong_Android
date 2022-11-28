@@ -6,10 +6,13 @@ import android.view.View
 import kr.co.younhwan.a9oormthon.util.replace
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import kr.co.younhwan.a9oormthon.R
 import kr.co.younhwan.a9oormthon.data.source.main.MainRepository
 import kr.co.younhwan.a9oormthon.databinding.FragmentCoach1Binding
 import kr.co.younhwan.a9oormthon.databinding.FragmentSoundBinding
 import kr.co.younhwan.a9oormthon.view.main.MainActivity
+import kr.co.younhwan.a9oormthon.view.main.coach.frag2.coach2Fragment
+import kr.co.younhwan.a9oormthon.view.main.sound.SoundFragment
 import kr.co.younhwan.a9oormthon.view.main.tale.presenter.TalePresenter
 
 class coach1Fragment : Fragment(), coach1Contract.View {
@@ -21,6 +24,10 @@ class coach1Fragment : Fragment(), coach1Contract.View {
         coach1Presenter(
             view = this
         )
+    }
+    //
+    private val coach2Fragment: coach2Fragment by lazy {
+        coach2Fragment()
     }
 
     override fun onCreateView(
@@ -38,7 +45,7 @@ class coach1Fragment : Fragment(), coach1Contract.View {
         val act = activity as MainActivity
 
         binding.frag2Container.setOnClickListener {
-
+            (activity as MainActivity).replace(R.id.fragmentContainerView, coach2Fragment)
         }
 
         binding.frag3Container.setOnClickListener {
