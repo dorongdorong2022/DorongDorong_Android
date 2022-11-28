@@ -6,13 +6,13 @@
 
 ## Team
 
-<div align="center">
-    <table style="width:80%;">
+<div>
+    <table style="width:80%; !important;">
         <th width="20%" style="text-align:center">우승우</th>
         <th width="20%" style="text-align:center">전예진</th>
         <th width="20%" style="text-align:center"><a href="https://github.com/ChoiSunPil" target="_blank">최선필</a></th>
         <th width="20%" style="text-align:center"><a href="https://github.com/GeonHyeongKim" target="_blank">김건형</a></th>
-        <th width="20%" style="text-align:center"><a href="https://github.com/younhwan97" target="_blank">조윤환</a></th>
+        <th width="20%" style="text-align:center"><a href="https://github.com/younhwan97" target="_blank">조윤환(me)</a></th>
         <tr>
             <td>
                 <img src="https://user-images.githubusercontent.com/78298663/204240407-dc36355e-7165-48de-8d3c-fccbb1e2af61.png"/>
@@ -35,16 +35,16 @@
                 <strong>Planner</strong>
             </td>
             <td>
-                Designer
+                <strong>Product Designer</strong>
             </td>
             <td>
-                BE
+                <strong>Back-end Developer</strong>
             </td>
             <td>
-                iOS
+                <strong>iOS Developer</strong>
             </td>
             <td>
-                AOS
+                <strong>AOS Developer</strong>
             </td>
         </tr>
     </table>
