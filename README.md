@@ -113,3 +113,24 @@
     <img src="https://user-images.githubusercontent.com/78298663/204277636-091de078-31a1-45a9-867a-c7d061fb6923.gif" height="500px"/>
 </a>
 <span>👈🏻 클릭하면 유튜브를 통해 소리와 함께 보실 수 있어요!</span>
+
+<br>
+
+### 3. 당신의 목소리로 아기에게 동화 읽어주기
+
+    a. 설명문을 읽고 녹음하기 버튼을 눌러주세요!
+    b. 주어진 문장을 따라읽고 목소리를 녹음해주세요.
+    c. 목소리를 저장하고 [제주설화]를 저장된 목소리로 이용해보세요!
+
+<img src="https://user-images.githubusercontent.com/78298663/204343955-a34fcc1b-1e76-493b-935e-30592e72b574.gif" height="500px"/>
+
+<br>
+
+### 4. 처음해보는 태교, 도롱도롱의 교육은 임산부에게도!
+
+    a. 임산부에게 도움되는 다양한 태교 꿀TIP들을 제공해요!
+    b. 궁금했던 점들을 오디오북으로 쉽게 들어보세요.
+
+<img src="https://user-images.githubusercontent.com/78298663/204344936-f7268cf5-47ba-4c4f-b391-d0f087ba297a.gif" height="500px"/>
+
+
