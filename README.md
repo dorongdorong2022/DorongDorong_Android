@@ -101,3 +101,15 @@
     <img src="https://user-images.githubusercontent.com/78298663/204272158-7c737928-b976-49cf-9436-187f28d025ef.gif" height="500px"/>
 </a>
 <span>👈🏻 클릭하면 유튜브를 통해 소리와 함께 보실 수 있어요!</span>
+
+<br>
+
+### 2. 재미있는 제주 설화를 아기에게 들려주기
+
+    a. [설화변경]을 통해 다양한 제주설화를 들을 수 있어요!
+    b. 목소리를 선택해 아기에게 다양한 목소리로 설화를 들려주세요.
+
+<a href="https://youtu.be/gXm6Pbr_9Ps">
+    <img src="https://user-images.githubusercontent.com/78298663/204277636-091de078-31a1-45a9-867a-c7d061fb6923.gif" height="500px"/>
+</a>
+<span>👈🏻 클릭하면 유튜브를 통해 소리와 함께 보실 수 있어요!</span>
