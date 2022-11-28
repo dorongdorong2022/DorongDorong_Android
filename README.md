@@ -141,3 +141,18 @@
 - minSdk 26
 - targetSdk 32
 - 가로모드, 다크모드 미지원
+
+<br>
+
+## 🚀 활용 기술
+
+### 아키텍쳐
+
+`mvp`
+
+<br>
+
+### 테크
+
+`Kotlin`, `DataBinding`, `OkHttp`, `Glide`, `Coroutine`, `RecylerView`
+
