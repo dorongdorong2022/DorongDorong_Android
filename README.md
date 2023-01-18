@@ -2,7 +2,7 @@
 
 ![Dorong-dorong-representative-image](https://user-images.githubusercontent.com/78298663/204269016-f4fbba05-be9a-45c9-b7f5-0f247b5d986e.png)
 
-- 🔗 [[kakao x goorm] 9oormthon 3기 대상 🏆](https://goorm.notion.site/c950291d2dfa40db8bf0aa081035e934)
+- 🔗 [[kakao x goorm] 9oormthon 3기 대상 🏆](https://9oormthon.goorm.io/3_dorongdorong)
 
 <br>
 
